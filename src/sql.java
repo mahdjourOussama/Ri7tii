@@ -70,7 +70,7 @@ public class sql {
 //==============================================================================
   public void insertToConfig(String Param1,String Param2,String Param3) {
             
-            String sql = "insert into bottel (`IDSP`,`IDB`,`coef`) VALUES (?,?,?)";
+            String sql = "insert into configration (`IDSP`,`IDB`,`coef`) VALUES (?,?,?)";
             try {
                 pst = conn.prepareStatement(sql);
                 pst.setString(1, Param1);
@@ -201,6 +201,26 @@ public class sql {
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "select all from Compont with condition\n" + e.getMessage());
+                return result;
+            }
+    }
+//==============================================================================
+//==============================================================================
+    public int checkingIFitExist(String table,String Condition) {
+            ResultSet res= null;
+            String sql = "select * from "+table+" where "+Condition;
+                int     result=0;
+            try {
+                st=conn.createStatement();
+                res=st.executeQuery(sql);
+                while(res.next())
+                    result++;
+               
+                return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "CheckingIfItExist\n" + e.getMessage());
                 return result;
             }
     }

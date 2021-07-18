@@ -1169,9 +1169,7 @@ public class app extends javax.swing.JFrame {
             AddConfigTableModel.removeRow(i);
         }
         AddConfigListModel.removeAllElements();
-        for (int i = 0; i < 10; i++) {
-            AddConfigListModel.addElement("Oki"+i);
-        }
+        settingListModel(AddConfigListModel, "sousproduit","Name");
     }//GEN-LAST:event_AddConfigClearButtonActionPerformed
 
     private void AddBottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelAddButtonActionPerformed
@@ -1248,6 +1246,11 @@ public class app extends javax.swing.JFrame {
                    Coef=AddConfigTableModel.getValueAt(0, 1).toString();
             String IDSPSelected=sqli.SelectFromCompontWithCOndition("Name='"+selectedCompont+"';", "IDSP");
             JOptionPane.showMessageDialog(null, IDBSelected+" "+IDSPSelected);
+            int checkIDSP=sqli.checkingIFitExist("configration", "IDSP='"+IDSPSelected+"';"),
+                checkIDB=sqli.checkingIFitExist("configration", "IDB='"+IDBSelected+"';");
+            if(checkIDSP==1&&checkIDB==1)
+                sqli.insertToConfig(IDSPSelected, IDBSelected, Coef);
+            else JOptionPane.showMessageDialog(null, "IDSP "+IDBSelected+" "+IDSPSelected+" IDB i double");
             AddConfigTableModel.removeRow(0);
         }   
     }//GEN-LAST:event_AddConfigAddButtonActionPerformed
