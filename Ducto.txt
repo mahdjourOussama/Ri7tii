@@ -1,0 +1,42 @@
+
+import java.sql.*;
+import javax.swing.*;
+
+public class Mysql {
+    Connection conn = null;
+    public static String BDD="Base_De_Donnees";
+    public static Connection ConnectDB(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            String unicode="?useUnicode=yes&characterEncoding=UTF-8";
+
+
+      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+BDD+unicode,"root",""); //serveur
+
+            return conn;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            return null;
+        }
+    }
+
+}
+//===========================
+ public void Nom_Methode(String Param1,String Param2) {
+
+
+            String sql = "insert into Table (`Param1`,`Param2`) VALUES (?,?)";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+
+                pst.execute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Nom_Methode\n" + e);
+            }
+    }
+//===========================
