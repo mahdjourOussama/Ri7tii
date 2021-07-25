@@ -1,11 +1,17 @@
 import java.sql.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class sql {
     //==========================================================================
         Connection conn=MySql.ConnectDB();
         PreparedStatement pst=null;
         Statement st= null;
+        ResultSet rs = null;
     //==========================================================================
 //==============================================================================
  public void insertToSP(String Param1,String Param2,String Param3,String Param4,String Param5) {
@@ -88,7 +94,7 @@ public class sql {
             }
     }
 //==============================================================================
-  //==============================================================================
+//==============================================================================
  public void UpdateStockFromSP(String Param1,String Param2) {
             
             String sql = "update sousproduit set `VolumeStock`=? where name = ?;";
@@ -161,40 +167,6 @@ public class sql {
     }
 //==============================================================================
 //==============================================================================
-  public ResultSet Select(String selection,String table,String condition) {
-            ResultSet res= null;
-            String sql = "select"+selection+" from "+table+" where"+condition;
-            try {
-                st=conn.createStatement();
-                res=st.executeQuery(sql);
-                return res;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                 JOptionPane.showMessageDialog(null, "Error try again \t");
-                JOptionPane.showMessageDialog(null, "select\t"+table+"\n" + e.getMessage());
-                return res;
-            }
-    }
-//==============================================================================
-//==============================================================================
-  public ResultSet Select(String table,String condition) {
-            ResultSet res= null;
-            String sql = "select * from "+table+" where "+condition;
-            try {
-                st=conn.createStatement();
-                res=st.executeQuery(sql);
-                return res;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                 JOptionPane.showMessageDialog(null, "Error try again \t");
-                JOptionPane.showMessageDialog(null, "select all from\t"+table+"\n" + e.getMessage());
-                return res;
-            }
-    }
-//==============================================================================
-//==============================================================================
   public ResultSet Select(String table) {
             ResultSet res= null;
             String sql = "select * from "+table;
@@ -211,39 +183,252 @@ public class sql {
             }
     }
 //==============================================================================
-  //==============================================================================
-  public String [] fromResultSetToString(ResultSet res, String Column ,int num ) {
+  public void fillBottelTable(JTable Botteltable){
+      
+        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+      
+        while(Botteltable.getRowCount()>0){
+            tab.removeRow(0);
+        }
         
-        int i=0;
-        String []result= new String[num];
-        try {
-          while (res.next()){
-            result[i]= res.getString(Column );
-            i++;
-        }
-
-      } catch (Exception e) {
-       e.printStackTrace(); 
-        JOptionPane.showMessageDialog(null, "TOString\n" + e.getMessage());
+        
+      String sql ="select * from bottel where actif=1";
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idBottel=rs.getString("IDB"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                Volume=rs.getString("Volume"),
+                Qte=rs.getString("Stock");
+      
+            
+            tab.addRow(new Object[]{idBottel,Volume,PrxAchat,PrxVendu,Qte});    
+       
+         
       }
-       return result;
-    }
-//==============================================================================
-//==============================================================================
-  public int Length(ResultSet res ) {
-        int i=0;
-        try {
-          while (res.next()){
-            i++;
-        }
+      
+      
       } catch (Exception e) {
           e.printStackTrace();
-          JOptionPane.showMessageDialog(null, "Length\n" + e.getMessage());
+         
       }
-        return i;
+      
+  }
+//==============================================================================
+  //==============================================================================
+  public void fillCompontTable(JTable Botteltable){
+      
+        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+      
+        while(Botteltable.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from sousproduit ";
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idsp=rs.getString("IDSP"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                name=rs.getString("name"),
+                Qte=rs.getString("VolumeStock"),
+                extrait=rs.getString("extrait");
+      
+            if (extrait.equals("1"))
+                tab.addRow(new Object[]{idsp,name,PrxAchat,PrxVendu,Qte,"Extrait"});    
+            else
+                tab.addRow(new Object[]{idsp,name,PrxAchat,PrxVendu,Qte,"Non Extrait"}); 
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+  //==============================================================================
+  public void fillProductTable(JTable Botteltable){
+      
+        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+      
+        while(Botteltable.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from produit";
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idp=rs.getString("IDP"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                name=rs.getString("name"),
+                Qte=rs.getString("qte");
+      
+            
+            tab.addRow(new Object[]{idp,name,PrxAchat,PrxVendu,Qte});    
+       
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+//==============================================================================
+  public void fillComboBox(JComboBox box ,String table,String selection){
+      
+        DefaultComboBoxModel model= (DefaultComboBoxModel) box.getModel();
+        box.removeAllItems();
+        
+        
+      String sql ="select * from "+table;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+         rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String result=rs.getString(selection);
+         model.addElement(result);
+
+      }
+        box.setModel(model);
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Fill ComboBox "+box.getName()+"\n"+e.getMessage());
+      }
+      
+  }
+//==============================================================================
+//==============================================================================
+  public void fillComboBoxWithConditon(JComboBox box ,String table,String selection,String condition){
+      
+        DefaultComboBoxModel model= (DefaultComboBoxModel) box.getModel();
+        box.removeAllItems();
+        
+        
+      String sql ="select * from "+table+" where "+condition;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+         rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String result=rs.getString(selection);
+         model.addElement(result);
+
+      }
+        box.setModel(model);
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Fill ComboBox "+box.getName()+" with Condition  "+condition+"\n"+e.getMessage());
+      }
+      
+  }
+//==============================================================================
+  //==============================================================================
+  public void fillList(DefaultListModel model ,String table,String selection){
+      
+        
+        model.removeAllElements();
+        
+        
+      String sql ="select * from "+table;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+         rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String result=rs.getString(selection);
+         model.addElement(result);
+
+      }
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Fill List\n"+e.getMessage());
+      }
+      
+  }
+//==============================================================================
+  public String[] Select(String table,String selection) {
+            ResultSet res= null;
+            String sql = "select * from "+table;
+            int length=0,i=0;
+            try {
+                st=conn.createStatement();
+                res=st.executeQuery(sql);
+                while(res.next())
+                    length++;
+                
+                res=st.executeQuery(sql);
+                String result[]= new String[length];
+                
+                while(res.next()){
+                    result[i]=res.getString(selection);
+                    i++;
+                }
+                return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "selectString all from\t"+table+" with  "+selection+"\n" + e.getMessage());
+                return null;
+            }
     }
 //==============================================================================
- //==============================================================================
+  //============================================================================
+  public String[] SelectWithCondition(String table,String condition,String selection) {
+            ResultSet res= null;
+            String sql = "select * from "+table+" where "+condition;
+            int length=0,i=0;
+            try {
+                st=conn.createStatement();
+                res=st.executeQuery(sql);
+                while(res.next())
+                    length++;
+                
+                res=st.executeQuery(sql);
+                String result[]= new String[length];
+                
+                while(res.next()){
+                    result[i]=res.getString(selection);
+                    i++;
+                }
+                return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "selectString all from\t"+table+" with  "+selection+"\n" + e.getMessage());
+                return null;
+            }
+    }
+//==============================================================================
+//==============================================================================
   public String SelectFromBottelWithCOndition(String Condition,String Selection) {
             ResultSet res= null;
             String sql = "select * from bottel where "+Condition,
@@ -262,8 +447,8 @@ public class sql {
                 return result;
             }
     }
-  //==============================================================================
-   //==============================================================================
+//==============================================================================
+//==============================================================================
   public String SelectFromConfigrationWithCOndition(String Condition,String Selection) {
             ResultSet res= null;
             String sql = "select * from configration where "+Condition,
@@ -282,8 +467,8 @@ public class sql {
                 return result;
             }
     }
-  //==============================================================================
-   //==============================================================================
+//==============================================================================
+//==============================================================================
   public String SelectFromProduitWithCOndition(String Condition,String Selection) {
             ResultSet res= null;
             String sql = "select * from produit where "+Condition,
@@ -302,7 +487,7 @@ public class sql {
                 return result;
             }
     }
-  //==============================================================================
+//==============================================================================
 //==============================================================================
     public String SelectFromCompontWithCOndition(String Condition,String Selection) {
             ResultSet res= null;
@@ -341,5 +526,24 @@ public class sql {
                 return result;
             }
     }
+//==============================================================================
+//==============================================================================
+    public void deleteFromTable(String idBottel){
+        String sqql="update bottel set actif=0 where idb='"+idBottel+"'";
+        //String sql="DELETE FROM "+table+" WHERE "+attribu+"='"+condition+"'";
+        try {
+            
+       pst=conn.prepareStatement(sqql);
+       pst.execute();
+        
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "DeleteFromTable \n "+e.getMessage());
+        }
+        
+        
+    }
+    
 //==============================================================================
 }

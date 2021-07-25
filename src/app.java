@@ -14,41 +14,8 @@ public class app extends javax.swing.JFrame {
      */
     public app() {
         initComponents();
-        settingComboBoxModel(BottelModel,"bottel","Volume"); 
-        settingListModel(AddConfigListModel, "sousproduit","Name");
-        settingComboBoxModel(productModel,    "produit","name");
-        settingComboBoxModelWithCondition(ExtraitModel,    "sousproduit","name", "extrait=1 ");
-        settingComboBoxModel(compontModel, "sousproduit","Name");
     }
     
-    public void settingComboBoxModel (DefaultComboBoxModel model,String table,String selection){
-        ResultSet res= sqli.Select(table);
-        int length=sqli.Length(res);
-        res= sqli.Select(table);
-        String[] BottelVolume=sqli.fromResultSetToString(res,selection,length );
-        for (int i = 0; i < length; i++) {
-            model.addElement(BottelVolume[i]);
-        }
-    }
-    public void settingComboBoxModelWithCondition (DefaultComboBoxModel model,String table,String selection,String condition){
-        ResultSet res= sqli.Select(table,condition);
-        int length=sqli.Length(res);
-        res= sqli.Select(table,condition);
-        String[] BottelVolume=sqli.fromResultSetToString(res,selection,length );
-        for (int i = 0; i < length; i++) {
-            System.out.println(i+1+" "+BottelVolume[i]);
-            model.addElement(BottelVolume[i]);
-        }
-    }
-    public void settingListModel (DefaultListModel model,String table,String selection){
-        ResultSet res= sqli.Select(table);
-        int length=sqli.Length(res);
-        res= sqli.Select(table);
-        String[] BottelVolume=sqli.fromResultSetToString(res,selection,length );
-        for (int i = 0; i < length; i++) {
-            model.addElement(BottelVolume[i]);
-        }
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -849,13 +816,21 @@ public class app extends javax.swing.JFrame {
         Dialog_Bottel.getContentPane().setLayout(Dialog_BottelLayout);
         Dialog_BottelLayout.setHorizontalGroup(
             Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Dialog_BottelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(DialogBottelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Dialog_BottelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(DialogBottelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         Dialog_BottelLayout.setVerticalGroup(
             Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DialogBottelContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Dialog_BottelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(DialogBottelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         BottelAddButton.setText("ADD");
@@ -866,8 +841,18 @@ public class app extends javax.swing.JFrame {
         });
 
         BottelModifieButton.setText("Modify");
+        BottelModifieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottelModifieButtonActionPerformed(evt);
+            }
+        });
 
         BottelDeleteButton.setText("Delete");
+        BottelDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottelDeleteButtonActionPerformed(evt);
+            }
+        });
 
         BottelSearchButton.setText("Search");
         BottelSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -934,7 +919,7 @@ public class app extends javax.swing.JFrame {
                         .addComponent(BottelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BottelModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                         .addComponent(BottelDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1225,6 +1210,11 @@ public class app extends javax.swing.JFrame {
         ProductModifieButton.setText("Modify");
 
         ProductDeleteButton.setText("Delete");
+        ProductDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductDeleteButtonActionPerformed(evt);
+            }
+        });
 
         ProductSearchButton.setText("Search");
         ProductSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1407,18 +1397,27 @@ public class app extends javax.swing.JFrame {
        AddContainer.add(AddConfigContainer,BorderLayout.CENTER);
        AddContainer.repaint();
        AddContainer.revalidate();
+       sqli.fillComboBox(AddConfigSelectedBottel,"bottel","Volume");
+       sqli.fillList(AddConfigListModel, "sousproduit","Name");
     }//GEN-LAST:event_AddConfigButtonActionPerformed
 
     private void AddBottelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelButtonActionPerformed
+
+        
+    sqli.fillBottelTable(BottelTable);
+
+
        AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
+       
        AddContainer.add(addBottelContainer,BorderLayout.CENTER);
        AddContainer.repaint();
        AddContainer.revalidate();
     }//GEN-LAST:event_AddBottelButtonActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-       AddContainer.removeAll();
+     sqli.fillProductTable(ProductTable);
+        AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
        AddContainer.add(AddProductContainer,BorderLayout.CENTER);
        AddContainer.repaint();
@@ -1426,7 +1425,8 @@ public class app extends javax.swing.JFrame {
            }//GEN-LAST:event_AddProductButtonActionPerformed
 
     private void AddCompontButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontButtonActionPerformed
-       AddContainer.removeAll();
+        sqli.fillCompontTable(CompontTable);
+        AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
        AddContainer.add(AddCompontContainer,BorderLayout.CENTER);
        AddContainer.repaint();
@@ -1450,7 +1450,7 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeBottelContainer,BorderLayout.CENTER);
        BottelModel.removeAllElements();
-        settingComboBoxModel(BottelModel,"bottel","volume");
+       sqli.fillComboBox(RecahrgeBottelCombobox,"bottel","volume");
         
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
@@ -1461,7 +1461,7 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeProductContainer,BorderLayout.CENTER);
        productModel.removeAllElements();
-        settingComboBoxModel(productModel,"produit","name");
+        sqli.fillComboBox(RechargeProductCombobox,"produit","name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeProductButtonActionPerformed
@@ -1471,7 +1471,7 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeCompontContainer,BorderLayout.CENTER);
        compontModel.removeAllElements();
-        settingComboBoxModel(compontModel,"sousproduit","Name");
+       sqli.fillComboBox(RechargeCompontCombobox,"sousproduit","Name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeCompontButtonActionPerformed
@@ -1484,7 +1484,7 @@ public class app extends javax.swing.JFrame {
         SellOriginalQte.setText("");
         SellOriginalPrix.setText("");
         productModel.removeAllElements();
-        settingComboBoxModel(productModel,"produit","name");
+        sqli.fillComboBox(SellOriginalCombobox,"produit","name");
     }//GEN-LAST:event_SellOriginalClearButtonActionPerformed
 
     private void SellCreatedClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedClearButtonActionPerformed
@@ -1492,8 +1492,8 @@ public class app extends javax.swing.JFrame {
         SellCreatedQte.setText("");
         ExtraitModel.removeAllElements();
         BottelModel.removeAllElements();
-        settingComboBoxModelWithCondition(ExtraitModel,    "sousproduit","name", "extrait=1 ");
-        settingComboBoxModel(BottelModel,"bottel","Volume"); 
+        sqli.fillComboBoxWithConditon(SellCreatedExtraitCombobox,"sousproduit","name", "extrait=1 ");
+        sqli.fillComboBox(SellCreatedBottelCombobox,"bottel","Volume"); 
     }//GEN-LAST:event_SellCreatedClearButtonActionPerformed
 
     private void SellCreatedBottelComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedBottelComboboxActionPerformed
@@ -1508,7 +1508,7 @@ public class app extends javax.swing.JFrame {
        SellContainer.removeAll();
        SellContainer.add(SellMenu,BorderLayout.NORTH);
        SellContainer.add(SellOriginalContainer,BorderLayout.CENTER);
-        
+        sqli.fillComboBox(SellOriginalCombobox,"produit","name");
        SellContainer.repaint();
        SellContainer.revalidate();
     }//GEN-LAST:event_SellOriginalButtonActionPerformed
@@ -1519,6 +1519,8 @@ public class app extends javax.swing.JFrame {
        SellContainer.add(SellCreatedContainer,BorderLayout.CENTER);
        SellContainer.repaint();
        SellContainer.revalidate();
+       sqli.fillComboBoxWithConditon(SellCreatedExtraitCombobox,"sousproduit","name", "extrait=1 ");
+        sqli.fillComboBox(SellCreatedBottelCombobox,"bottel","Volume"); 
     }//GEN-LAST:event_SellCreatedButtonActionPerformed
 
     private void AddConfigPutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConfigPutButtonActionPerformed
@@ -1569,9 +1571,9 @@ public class app extends javax.swing.JFrame {
         }
         AddConfigListModel.removeAllElements();
         
-        settingListModel(AddConfigListModel, "sousproduit","Name");
+        sqli.fillList(AddConfigListModel, "sousproduit","Name");
         BottelModel.removeAllElements();
-        settingComboBoxModel(BottelModel,"bottel","Volume");
+        sqli.fillComboBox(AddConfigSelectedBottel,"bottel","Volume");
         
     }//GEN-LAST:event_AddConfigClearButtonActionPerformed
 
@@ -1730,20 +1732,20 @@ public class app extends javax.swing.JFrame {
 
     private void RechargeCompontClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeCompontClearButtonActionPerformed
         compontModel.removeAllElements();
-        settingComboBoxModel(compontModel,"sousproduit","Name");
+        sqli.fillComboBox(RechargeCompontCombobox,"sousproduit","Name");
         RechargeCompontStock.setText("");
        
     }//GEN-LAST:event_RechargeCompontClearButtonActionPerformed
 
     private void RechargeProductClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeProductClearButtonActionPerformed
         productModel.removeAllElements();
-        settingComboBoxModel(productModel,"produit","name");
+        sqli.fillComboBox(RechargeProductCombobox,"produit","name");
         RechargeProductStock.setText("");
     }//GEN-LAST:event_RechargeProductClearButtonActionPerformed
 
     private void RechargeBottelClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeBottelClearButtonActionPerformed
         BottelModel.removeAllElements();
-        settingComboBoxModel(BottelModel,"bottel","volume");
+        sqli.fillComboBox(RecahrgeBottelCombobox,"bottel","volume");
         RechargeBottelQte.setText("");    }//GEN-LAST:event_RechargeBottelClearButtonActionPerformed
 
     private void RechargeBottelRechargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeBottelRechargeButtonActionPerformed
@@ -1811,6 +1813,8 @@ public class app extends javax.swing.JFrame {
 
     private void BottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelAddButtonActionPerformed
        Dialog_Bottel.setLocationRelativeTo(null);
+       AddBottelAddButton.setText("ADD");
+       Dialog_Bottel.setTitle("ADD Bottels");
        Dialog_Bottel.setVisible(true);
     }//GEN-LAST:event_BottelAddButtonActionPerformed
 
@@ -1823,6 +1827,35 @@ public class app extends javax.swing.JFrame {
        Dialog_Product.setLocationRelativeTo(null);
        Dialog_Product.setVisible(true);
     }//GEN-LAST:event_PeoductAddButtonActionPerformed
+
+    private void BottelModifieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelModifieButtonActionPerformed
+       Dialog_Bottel.setLocationRelativeTo(null);
+       AddBottelAddButton.setText("Modify");
+       Dialog_Bottel.setTitle("Modify Bottels");
+       Dialog_Bottel.setVisible(true);
+    }//GEN-LAST:event_BottelModifieButtonActionPerformed
+
+    private void BottelDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelDeleteButtonActionPerformed
+        int index=BottelTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String idBottel= BottelTable.getValueAt(index, 0).toString();
+           sqli.deleteFromTable(idBottel);
+           sqli.fillBottelTable(BottelTable);
+        }
+     
+    }//GEN-LAST:event_BottelDeleteButtonActionPerformed
+
+    private void ProductDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductDeleteButtonActionPerformed
+        DefaultTableModel tab =(DefaultTableModel) ProductTable.getModel();
+      for (int i = 0; i < tab.getRowCount();i ++) {
+            tab.removeRow(0);
+        }
+      ProductTable.setModel(tab);
+      
+      System.out.println(ProductTable.getRowCount());
+    }//GEN-LAST:event_ProductDeleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
