@@ -20,7 +20,7 @@ public class sql {
                 pst.setString(5, Param5);
                 
                 pst.execute();
-
+                JOptionPane.showMessageDialog(null, "Added ToSP\t");
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "insertToSP\n" + e.getMessage());
@@ -40,7 +40,7 @@ public class sql {
 
                 
                 pst.execute();
-
+                JOptionPane.showMessageDialog(null, "Added ToProduct\t");
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "insertToProduct\n" + e.getMessage());
@@ -60,7 +60,7 @@ public class sql {
 
                 
                 pst.execute();
-
+                JOptionPane.showMessageDialog(null, "Added ToBottel\t");
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "insertToProduct\n" + e.getMessage());
@@ -80,9 +80,82 @@ public class sql {
 
                 
                 pst.execute();
-
+                JOptionPane.showMessageDialog(null, "Added \t");
             } catch (Exception e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error try again \t");
+                JOptionPane.showMessageDialog(null, "insertToConfig\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+  //==============================================================================
+ public void UpdateStockFromSP(String Param1,String Param2) {
+            
+            String sql = "update sousproduit set `VolumeStock`=? where name = ?;";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated StockFromSP \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "insertToSP\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+//==============================================================================
+ public void UpdateStockFromProduit(String Param1,String Param2) {
+            
+            String sql = "update produit set `qte`=? where name = ?;";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated StockFromProduit \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "UpdateStockFromProduit\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+//==============================================================================
+  public void UpdateStockFromBottel(String Param1,String Param2) {
+            
+            String sql = "update bottel set `Stock`=? where volume = ?;";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated StockFromBottel\t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "UpdateStockFrombottel\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+//==============================================================================
+  public void UpdateFromConfig(String Param1,String Param2,String Param3) {
+            
+            String sql = "insert into configration (`IDSP`,`IDB`,`coef`) VALUES (?,?,?)";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+                pst.setString(3, Param3);
+
+
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Added \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error try again \t");
                 JOptionPane.showMessageDialog(null, "insertToConfig\n" + e.getMessage());
             }
     }
@@ -98,6 +171,7 @@ public class sql {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                 JOptionPane.showMessageDialog(null, "Error try again \t");
                 JOptionPane.showMessageDialog(null, "select\t"+table+"\n" + e.getMessage());
                 return res;
             }
@@ -106,7 +180,7 @@ public class sql {
 //==============================================================================
   public ResultSet Select(String table,String condition) {
             ResultSet res= null;
-            String sql = "select * from "+table+" where"+condition;
+            String sql = "select * from "+table+" where "+condition;
             try {
                 st=conn.createStatement();
                 res=st.executeQuery(sql);
@@ -114,6 +188,7 @@ public class sql {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                 JOptionPane.showMessageDialog(null, "Error try again \t");
                 JOptionPane.showMessageDialog(null, "select all from\t"+table+"\n" + e.getMessage());
                 return res;
             }
@@ -130,6 +205,7 @@ public class sql {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                 JOptionPane.showMessageDialog(null, "Error try again \t");
                 JOptionPane.showMessageDialog(null, "select all from\t"+table+" withpout condition\n" + e.getMessage());
                 return res;
             }
@@ -147,7 +223,7 @@ public class sql {
         }
 
       } catch (Exception e) {
-       e.printStackTrace();
+       e.printStackTrace(); 
         JOptionPane.showMessageDialog(null, "TOString\n" + e.getMessage());
       }
        return result;
@@ -186,6 +262,47 @@ public class sql {
                 return result;
             }
     }
+  //==============================================================================
+   //==============================================================================
+  public String SelectFromConfigrationWithCOndition(String Condition,String Selection) {
+            ResultSet res= null;
+            String sql = "select * from configration where "+Condition,
+                    result="";
+            try {
+                st=conn.createStatement();
+                res=st.executeQuery(sql);
+                res.next();
+                result=res.getString(Selection);
+                
+                return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "select all from config with condition\n" + e.getMessage());
+                return result;
+            }
+    }
+  //==============================================================================
+   //==============================================================================
+  public String SelectFromProduitWithCOndition(String Condition,String Selection) {
+            ResultSet res= null;
+            String sql = "select * from produit where "+Condition,
+                    result="";
+            try {
+                st=conn.createStatement();
+                res=st.executeQuery(sql);
+                res.next();
+                result=res.getString(Selection);
+                
+                return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "select all from bottel with condition\n" + e.getMessage());
+                return result;
+            }
+    }
+  //==============================================================================
 //==============================================================================
     public String SelectFromCompontWithCOndition(String Condition,String Selection) {
             ResultSet res= null;

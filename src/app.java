@@ -8,21 +8,35 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class app extends javax.swing.JFrame {
-    
+    public String ActionAddItem="";
     /**
      * Creates new form app
      */
     public app() {
         initComponents();
-        settingComboBoxModel(AddConfigSelectedBottelModel,"bottel","Volume"); 
+        settingComboBoxModel(BottelModel,"bottel","Volume"); 
         settingListModel(AddConfigListModel, "sousproduit","Name");
+        settingComboBoxModel(productModel,    "produit","name");
+        settingComboBoxModelWithCondition(ExtraitModel,    "sousproduit","name", "extrait=1 ");
+        settingComboBoxModel(compontModel, "sousproduit","Name");
     }
+    
     public void settingComboBoxModel (DefaultComboBoxModel model,String table,String selection){
         ResultSet res= sqli.Select(table);
         int length=sqli.Length(res);
         res= sqli.Select(table);
         String[] BottelVolume=sqli.fromResultSetToString(res,selection,length );
         for (int i = 0; i < length; i++) {
+            model.addElement(BottelVolume[i]);
+        }
+    }
+    public void settingComboBoxModelWithCondition (DefaultComboBoxModel model,String table,String selection,String condition){
+        ResultSet res= sqli.Select(table,condition);
+        int length=sqli.Length(res);
+        res= sqli.Select(table,condition);
+        String[] BottelVolume=sqli.fromResultSetToString(res,selection,length );
+        for (int i = 0; i < length; i++) {
+            System.out.println(i+1+" "+BottelVolume[i]);
             model.addElement(BottelVolume[i]);
         }
     }
@@ -69,40 +83,6 @@ public class app extends javax.swing.JFrame {
         AddConfigAddButton = new javax.swing.JButton();
         AddConfigClearButton = new javax.swing.JButton();
         AddConfigUpdateButton = new javax.swing.JButton();
-        AddBottelContainer = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        AddBottelVolume = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        AddBottelBuyingPrice = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        AddBottelSellingPrice = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        AddBottelQte = new javax.swing.JTextField();
-        AddBottelClearButton = new javax.swing.JButton();
-        AddBottelAddButton = new javax.swing.JButton();
-        AddProductContainer = new javax.swing.JPanel();
-        AddProductAddButton = new javax.swing.JButton();
-        AddProductQte = new javax.swing.JTextField();
-        AddProductSellingPrice = new javax.swing.JTextField();
-        AddProductBuyingPrice = new javax.swing.JTextField();
-        AddProductName = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        AddProductClearButton = new javax.swing.JButton();
-        AddCompontContainer = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        AddCompontName = new javax.swing.JTextField();
-        AddCompontBuyingPrice = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        AddCompontSellingPrice = new javax.swing.JTextField();
-        AddCompontQte = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        AddCompontClearButton = new javax.swing.JButton();
-        AddCompontAddButton = new javax.swing.JButton();
-        ExtraitCheckbox = new javax.swing.JCheckBox();
         RechargeBottelContainer = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         RecahrgeBottelCombobox = new javax.swing.JComboBox<>();
@@ -144,6 +124,70 @@ public class app extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         SellCreatedPrix = new javax.swing.JTextField();
         SellCreatedExtraitCombobox = new javax.swing.JComboBox<>();
+        Dialog_Bottel = new javax.swing.JDialog();
+        DialogBottelContainer = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        AddBottelVolume = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        AddBottelBuyingPrice = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        AddBottelSellingPrice = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        AddBottelQte = new javax.swing.JTextField();
+        AddBottelClearButton = new javax.swing.JButton();
+        AddBottelAddButton = new javax.swing.JButton();
+        addBottelContainer = new javax.swing.JPanel();
+        BottelAddButton = new javax.swing.JButton();
+        BottelModifieButton = new javax.swing.JButton();
+        BottelDeleteButton = new javax.swing.JButton();
+        BottelSearchBar = new javax.swing.JTextField();
+        BottelSearchButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        BottelTable = new javax.swing.JTable();
+        jLabel30 = new javax.swing.JLabel();
+        Dialog_Compont = new javax.swing.JDialog();
+        DialogCompontContainer = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        AddCompontName = new javax.swing.JTextField();
+        AddCompontBuyingPrice = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        AddCompontSellingPrice = new javax.swing.JTextField();
+        AddCompontQte = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        AddCompontClearButton = new javax.swing.JButton();
+        AddCompontAddButton = new javax.swing.JButton();
+        ExtraitCheckbox = new javax.swing.JCheckBox();
+        Dialog_Product = new javax.swing.JDialog();
+        DialogProductContainer = new javax.swing.JPanel();
+        AddProductAddButton = new javax.swing.JButton();
+        AddProductQte = new javax.swing.JTextField();
+        AddProductSellingPrice = new javax.swing.JTextField();
+        AddProductBuyingPrice = new javax.swing.JTextField();
+        AddProductName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        AddProductClearButton = new javax.swing.JButton();
+        AddCompontContainer = new javax.swing.JPanel();
+        CompontAddButton = new javax.swing.JButton();
+        CompontModifieButton = new javax.swing.JButton();
+        CompontDeleteButton = new javax.swing.JButton();
+        CompontSearchBar = new javax.swing.JTextField();
+        CompontSearchButton = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        CompontTable = new javax.swing.JTable();
+        jLabel29 = new javax.swing.JLabel();
+        AddProductContainer = new javax.swing.JPanel();
+        PeoductAddButton = new javax.swing.JButton();
+        ProductModifieButton = new javax.swing.JButton();
+        ProductDeleteButton = new javax.swing.JButton();
+        ProductSearchBar = new javax.swing.JTextField();
+        ProductSearchButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ProductTable = new javax.swing.JTable();
+        jLabel28 = new javax.swing.JLabel();
         Container = new javax.swing.JPanel();
         HomeMenu = new javax.swing.JPanel();
         AddButton = new javax.swing.JButton();
@@ -242,7 +286,7 @@ public class app extends javax.swing.JFrame {
 
         jLabel1.setText("Bottel");
 
-        AddConfigSelectedBottel.setModel(AddConfigSelectedBottelModel);
+        AddConfigSelectedBottel.setModel(BottelModel);
 
         AddConfigTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,241 +398,9 @@ public class app extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel3.setText("Volume");
-
-        jLabel4.setText("Buying Price");
-
-        jLabel5.setText("Selling Price");
-
-        jLabel6.setText("Quantite");
-
-        AddBottelClearButton.setText("Clear");
-        AddBottelClearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddBottelClearButtonActionPerformed(evt);
-            }
-        });
-
-        AddBottelAddButton.setText("Add");
-        AddBottelAddButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddBottelAddButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout AddBottelContainerLayout = new javax.swing.GroupLayout(AddBottelContainer);
-        AddBottelContainer.setLayout(AddBottelContainerLayout);
-        AddBottelContainerLayout.setHorizontalGroup(
-            AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddBottelContainerLayout.createSequentialGroup()
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddBottelContainerLayout.createSequentialGroup()
-                        .addComponent(AddBottelClearButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AddBottelAddButton))
-                    .addGroup(AddBottelContainerLayout.createSequentialGroup()
-                        .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddBottelQte, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-                            .addComponent(AddBottelSellingPrice)
-                            .addComponent(AddBottelVolume)
-                            .addComponent(AddBottelBuyingPrice))))
-                .addContainerGap())
-        );
-        AddBottelContainerLayout.setVerticalGroup(
-            AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddBottelContainerLayout.createSequentialGroup()
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddBottelContainerLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddBottelContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AddBottelVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBottelBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBottelSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBottelQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(AddBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddBottelClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddBottelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        AddProductAddButton.setText("Add");
-        AddProductAddButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddProductAddButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Name");
-
-        jLabel8.setText("Buying Price");
-
-        jLabel9.setText("Selling Price");
-
-        jLabel10.setText("Quantite");
-
-        AddProductClearButton.setText("Clear");
-        AddProductClearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddProductClearButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout AddProductContainerLayout = new javax.swing.GroupLayout(AddProductContainer);
-        AddProductContainer.setLayout(AddProductContainerLayout);
-        AddProductContainerLayout.setHorizontalGroup(
-            AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddProductContainerLayout.createSequentialGroup()
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddProductContainerLayout.createSequentialGroup()
-                        .addComponent(AddProductClearButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 600, Short.MAX_VALUE)
-                        .addComponent(AddProductAddButton))
-                    .addGroup(AddProductContainerLayout.createSequentialGroup()
-                        .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddProductQte)
-                            .addComponent(AddProductSellingPrice)
-                            .addComponent(AddProductName)
-                            .addComponent(AddProductBuyingPrice))))
-                .addContainerGap())
-        );
-        AddProductContainerLayout.setVerticalGroup(
-            AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddProductContainerLayout.createSequentialGroup()
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddProductContainerLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddProductContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AddProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddProductBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddProductSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddProductQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddProductClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddProductAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jLabel11.setText("Name");
-
-        jLabel12.setText("Buying Price");
-
-        jLabel13.setText("Selling Price");
-
-        jLabel14.setText("Quantite");
-
-        AddCompontClearButton.setText("Clear");
-        AddCompontClearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCompontClearButtonActionPerformed(evt);
-            }
-        });
-
-        AddCompontAddButton.setText("Add");
-        AddCompontAddButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCompontAddButtonActionPerformed(evt);
-            }
-        });
-
-        ExtraitCheckbox.setText("Extrait");
-
-        javax.swing.GroupLayout AddCompontContainerLayout = new javax.swing.GroupLayout(AddCompontContainer);
-        AddCompontContainer.setLayout(AddCompontContainerLayout);
-        AddCompontContainerLayout.setHorizontalGroup(
-            AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddCompontContainerLayout.createSequentialGroup()
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddCompontContainerLayout.createSequentialGroup()
-                        .addComponent(AddCompontClearButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AddCompontAddButton))
-                    .addGroup(AddCompontContainerLayout.createSequentialGroup()
-                        .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddCompontQte, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
-                            .addComponent(AddCompontSellingPrice)
-                            .addComponent(AddCompontBuyingPrice)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddCompontContainerLayout.createSequentialGroup()
-                                .addComponent(ExtraitCheckbox)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddCompontName)))))
-                .addContainerGap())
-        );
-        AddCompontContainerLayout.setVerticalGroup(
-            AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddCompontContainerLayout.createSequentialGroup()
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddCompontContainerLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ExtraitCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddCompontContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AddCompontName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddCompontBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddCompontSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddCompontQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddCompontClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddCompontAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
         jLabel15.setText("Stock");
 
-        RecahrgeBottelCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        RecahrgeBottelCombobox.setModel(BottelModel);
 
         jLabel16.setText("Bottel");
 
@@ -599,8 +411,18 @@ public class app extends javax.swing.JFrame {
         });
 
         RechargeBottelRechargeButton.setText("Recharge");
+        RechargeBottelRechargeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeBottelRechargeButtonActionPerformed(evt);
+            }
+        });
 
         RechargeBottelClearButton.setText("Clear");
+        RechargeBottelClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeBottelClearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RechargeBottelContainerLayout = new javax.swing.GroupLayout(RechargeBottelContainer);
         RechargeBottelContainer.setLayout(RechargeBottelContainerLayout);
@@ -644,7 +466,7 @@ public class app extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        RechargeCompontCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        RechargeCompontCombobox.setModel(compontModel);
 
         RechargeCompontStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -657,8 +479,18 @@ public class app extends javax.swing.JFrame {
         jLabel18.setText("COmponet");
 
         RechargeCompontClearButton.setText("Clear");
+        RechargeCompontClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeCompontClearButtonActionPerformed(evt);
+            }
+        });
 
         RechargeCompontRechargeButton.setText("Recharge");
+        RechargeCompontRechargeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeCompontRechargeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RechargeCompontContainerLayout = new javax.swing.GroupLayout(RechargeCompontContainer);
         RechargeCompontContainer.setLayout(RechargeCompontContainerLayout);
@@ -702,7 +534,7 @@ public class app extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        RechargeProductCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        RechargeProductCombobox.setModel(productModel);
 
         RechargeProductStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -715,8 +547,18 @@ public class app extends javax.swing.JFrame {
         jLabel20.setText("Product");
 
         RechargeProductClearButton.setText("Clear");
+        RechargeProductClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeProductClearButtonActionPerformed(evt);
+            }
+        });
 
         RechargeProductRechargeButton.setText("Recharge");
+        RechargeProductRechargeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RechargeProductRechargeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RechargeProductContainerLayout = new javax.swing.GroupLayout(RechargeProductContainer);
         RechargeProductContainer.setLayout(RechargeProductContainerLayout);
@@ -762,7 +604,7 @@ public class app extends javax.swing.JFrame {
 
         jLabel21.setText("Qte");
 
-        SellOriginalCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SellOriginalCombobox.setModel(productModel);
         SellOriginalCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SellOriginalComboboxActionPerformed(evt);
@@ -774,6 +616,11 @@ public class app extends javax.swing.JFrame {
         jLabel23.setText("Prix");
 
         SellOriginalSellButton.setText("Sell");
+        SellOriginalSellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SellOriginalSellButtonActionPerformed(evt);
+            }
+        });
 
         SellOriginalClearButton.setText("Clear");
         SellOriginalClearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -842,7 +689,7 @@ public class app extends javax.swing.JFrame {
 
         jLabel26.setText("Bottel");
 
-        SellCreatedBottelCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SellCreatedBottelCombobox.setModel(BottelModel);
         SellCreatedBottelCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SellCreatedBottelComboboxActionPerformed(evt);
@@ -850,10 +697,15 @@ public class app extends javax.swing.JFrame {
         });
 
         SellCreatedSellButton.setText("Sell");
+        SellCreatedSellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SellCreatedSellButtonActionPerformed(evt);
+            }
+        });
 
         jLabel27.setText("Prix");
 
-        SellCreatedExtraitCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SellCreatedExtraitCombobox.setModel(ExtraitModel);
         SellCreatedExtraitCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SellCreatedExtraitComboboxActionPerformed(evt);
@@ -912,6 +764,537 @@ public class app extends javax.swing.JFrame {
                 .addGroup(SellCreatedContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SellCreatedSellButton)
                     .addComponent(SellCreatedClearButton))
+                .addContainerGap())
+        );
+
+        Dialog_Bottel.setMinimumSize(new java.awt.Dimension(700, 400));
+        Dialog_Bottel.setName("Add Bottels"); // NOI18N
+
+        jLabel3.setText("Volume");
+
+        jLabel4.setText("Buying Price");
+
+        jLabel5.setText("Selling Price");
+
+        jLabel6.setText("Quantite");
+
+        AddBottelClearButton.setText("Clear");
+        AddBottelClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBottelClearButtonActionPerformed(evt);
+            }
+        });
+
+        AddBottelAddButton.setText("Add");
+        AddBottelAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBottelAddButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogBottelContainerLayout = new javax.swing.GroupLayout(DialogBottelContainer);
+        DialogBottelContainer.setLayout(DialogBottelContainerLayout);
+        DialogBottelContainerLayout.setHorizontalGroup(
+            DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogBottelContainerLayout.createSequentialGroup()
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogBottelContainerLayout.createSequentialGroup()
+                        .addComponent(AddBottelClearButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AddBottelAddButton))
+                    .addGroup(DialogBottelContainerLayout.createSequentialGroup()
+                        .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddBottelQte, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                            .addComponent(AddBottelSellingPrice)
+                            .addComponent(AddBottelVolume)
+                            .addComponent(AddBottelBuyingPrice))))
+                .addContainerGap())
+        );
+        DialogBottelContainerLayout.setVerticalGroup(
+            DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogBottelContainerLayout.createSequentialGroup()
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogBottelContainerLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogBottelContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddBottelVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBottelBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBottelSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBottelQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(DialogBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddBottelClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBottelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout Dialog_BottelLayout = new javax.swing.GroupLayout(Dialog_Bottel.getContentPane());
+        Dialog_Bottel.getContentPane().setLayout(Dialog_BottelLayout);
+        Dialog_BottelLayout.setHorizontalGroup(
+            Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Dialog_BottelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(DialogBottelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        Dialog_BottelLayout.setVerticalGroup(
+            Dialog_BottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(DialogBottelContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        BottelAddButton.setText("ADD");
+        BottelAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottelAddButtonActionPerformed(evt);
+            }
+        });
+
+        BottelModifieButton.setText("Modify");
+
+        BottelDeleteButton.setText("Delete");
+
+        BottelSearchButton.setText("Search");
+        BottelSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottelSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        BottelTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BottelTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDB", "Volume", "PrixAcha", "PrixVendu", "Stock"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(BottelTable);
+
+        jLabel30.setText("Bottels");
+
+        javax.swing.GroupLayout addBottelContainerLayout = new javax.swing.GroupLayout(addBottelContainer);
+        addBottelContainer.setLayout(addBottelContainerLayout);
+        addBottelContainerLayout.setHorizontalGroup(
+            addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBottelContainerLayout.createSequentialGroup()
+                .addGroup(addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BottelDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BottelModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BottelAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(addBottelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BottelSearchBar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BottelSearchButton)
+                .addGap(12, 12, 12))
+        );
+        addBottelContainerLayout.setVerticalGroup(
+            addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBottelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BottelSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BottelSearchButton)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addBottelContainerLayout.createSequentialGroup()
+                        .addComponent(BottelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BottelModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BottelDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        Dialog_Compont.setMinimumSize(new java.awt.Dimension(700, 400));
+        Dialog_Compont.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        jLabel11.setText("Name");
+
+        jLabel12.setText("Buying Price");
+
+        jLabel13.setText("Selling Price");
+
+        jLabel14.setText("Quantite");
+
+        AddCompontClearButton.setText("Clear");
+        AddCompontClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCompontClearButtonActionPerformed(evt);
+            }
+        });
+
+        AddCompontAddButton.setText("Add");
+        AddCompontAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCompontAddButtonActionPerformed(evt);
+            }
+        });
+
+        ExtraitCheckbox.setText("Extrait");
+
+        javax.swing.GroupLayout DialogCompontContainerLayout = new javax.swing.GroupLayout(DialogCompontContainer);
+        DialogCompontContainer.setLayout(DialogCompontContainerLayout);
+        DialogCompontContainerLayout.setHorizontalGroup(
+            DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCompontContainerLayout.createSequentialGroup()
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogCompontContainerLayout.createSequentialGroup()
+                        .addComponent(AddCompontClearButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AddCompontAddButton))
+                    .addGroup(DialogCompontContainerLayout.createSequentialGroup()
+                        .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddCompontQte)
+                            .addComponent(AddCompontSellingPrice)
+                            .addComponent(AddCompontBuyingPrice)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogCompontContainerLayout.createSequentialGroup()
+                                .addComponent(ExtraitCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddCompontName, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        DialogCompontContainerLayout.setVerticalGroup(
+            DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCompontContainerLayout.createSequentialGroup()
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogCompontContainerLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ExtraitCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogCompontContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddCompontName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddCompontBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddCompontSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddCompontQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(DialogCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddCompontClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddCompontAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout Dialog_CompontLayout = new javax.swing.GroupLayout(Dialog_Compont.getContentPane());
+        Dialog_Compont.getContentPane().setLayout(Dialog_CompontLayout);
+        Dialog_CompontLayout.setHorizontalGroup(
+            Dialog_CompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 776, Short.MAX_VALUE)
+            .addGroup(Dialog_CompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DialogCompontContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Dialog_CompontLayout.setVerticalGroup(
+            Dialog_CompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 301, Short.MAX_VALUE)
+            .addGroup(Dialog_CompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DialogCompontContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Dialog_Product.setMinimumSize(new java.awt.Dimension(700, 400));
+        Dialog_Product.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        AddProductAddButton.setText("Add");
+        AddProductAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddProductAddButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Name");
+
+        jLabel8.setText("Buying Price");
+
+        jLabel9.setText("Selling Price");
+
+        jLabel10.setText("Quantite");
+
+        AddProductClearButton.setText("Clear");
+        AddProductClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddProductClearButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogProductContainerLayout = new javax.swing.GroupLayout(DialogProductContainer);
+        DialogProductContainer.setLayout(DialogProductContainerLayout);
+        DialogProductContainerLayout.setHorizontalGroup(
+            DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogProductContainerLayout.createSequentialGroup()
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogProductContainerLayout.createSequentialGroup()
+                        .addComponent(AddProductClearButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AddProductAddButton))
+                    .addGroup(DialogProductContainerLayout.createSequentialGroup()
+                        .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddProductQte, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(AddProductSellingPrice)
+                            .addComponent(AddProductName)
+                            .addComponent(AddProductBuyingPrice))))
+                .addContainerGap())
+        );
+        DialogProductContainerLayout.setVerticalGroup(
+            DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogProductContainerLayout.createSequentialGroup()
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogProductContainerLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogProductContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddProductBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddProductSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddProductQte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(DialogProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddProductClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddProductAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout Dialog_ProductLayout = new javax.swing.GroupLayout(Dialog_Product.getContentPane());
+        Dialog_Product.getContentPane().setLayout(Dialog_ProductLayout);
+        Dialog_ProductLayout.setHorizontalGroup(
+            Dialog_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+            .addGroup(Dialog_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DialogProductContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Dialog_ProductLayout.setVerticalGroup(
+            Dialog_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(Dialog_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DialogProductContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        CompontAddButton.setText("ADD");
+        CompontAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompontAddButtonActionPerformed(evt);
+            }
+        });
+
+        CompontModifieButton.setText("Modify");
+
+        CompontDeleteButton.setText("Delete");
+
+        CompontSearchButton.setText("Search");
+        CompontSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompontSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        CompontTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CompontTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDSP", "Name", "PrixAcha", "PrixVendu", "Stock", "Extrait"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(CompontTable);
+
+        jLabel29.setText("COmponts");
+
+        javax.swing.GroupLayout AddCompontContainerLayout = new javax.swing.GroupLayout(AddCompontContainer);
+        AddCompontContainer.setLayout(AddCompontContainerLayout);
+        AddCompontContainerLayout.setHorizontalGroup(
+            AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddCompontContainerLayout.createSequentialGroup()
+                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CompontDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CompontModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CompontAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5)
+                .addContainerGap())
+            .addGroup(AddCompontContainerLayout.createSequentialGroup()
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CompontSearchBar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CompontSearchButton)
+                .addGap(12, 12, 12))
+        );
+        AddCompontContainerLayout.setVerticalGroup(
+            AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddCompontContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CompontSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CompontSearchButton))
+                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddCompontContainerLayout.createSequentialGroup()
+                        .addComponent(CompontAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CompontModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(CompontDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        PeoductAddButton.setText("ADD");
+        PeoductAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PeoductAddButtonActionPerformed(evt);
+            }
+        });
+
+        ProductModifieButton.setText("Modify");
+
+        ProductDeleteButton.setText("Delete");
+
+        ProductSearchButton.setText("Search");
+        ProductSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        ProductTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDP", "Name", "PrixAcha", "PrixVendu", "Stock"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(ProductTable);
+
+        jLabel28.setText("Products");
+
+        javax.swing.GroupLayout AddProductContainerLayout = new javax.swing.GroupLayout(AddProductContainer);
+        AddProductContainer.setLayout(AddProductContainerLayout);
+        AddProductContainerLayout.setHorizontalGroup(
+            AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddProductContainerLayout.createSequentialGroup()
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ProductModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PeoductAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ProductDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+            .addGroup(AddProductContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ProductSearchBar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ProductSearchButton)
+                .addGap(12, 12, 12))
+        );
+        AddProductContainerLayout.setVerticalGroup(
+            AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddProductContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ProductSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ProductSearchButton))
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddProductContainerLayout.createSequentialGroup()
+                        .addComponent(PeoductAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ProductModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ProductDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1029,7 +1412,7 @@ public class app extends javax.swing.JFrame {
     private void AddBottelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelButtonActionPerformed
        AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
-       AddContainer.add(AddBottelContainer,BorderLayout.CENTER);
+       AddContainer.add(addBottelContainer,BorderLayout.CENTER);
        AddContainer.repaint();
        AddContainer.revalidate();
     }//GEN-LAST:event_AddBottelButtonActionPerformed
@@ -1066,6 +1449,9 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.removeAll();
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeBottelContainer,BorderLayout.CENTER);
+       BottelModel.removeAllElements();
+        settingComboBoxModel(BottelModel,"bottel","volume");
+        
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeBottelButtonActionPerformed
@@ -1074,6 +1460,8 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.removeAll();
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeProductContainer,BorderLayout.CENTER);
+       productModel.removeAllElements();
+        settingComboBoxModel(productModel,"produit","name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeProductButtonActionPerformed
@@ -1082,6 +1470,8 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.removeAll();
        RechargeContainer.add(RechargeMenu,BorderLayout.NORTH);
        RechargeContainer.add(RechargeCompontContainer,BorderLayout.CENTER);
+       compontModel.removeAllElements();
+        settingComboBoxModel(compontModel,"sousproduit","Name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeCompontButtonActionPerformed
@@ -1091,11 +1481,19 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_SellOriginalComboboxActionPerformed
 
     private void SellOriginalClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalClearButtonActionPerformed
-        // TODO add your handling code here:
+        SellOriginalQte.setText("");
+        SellOriginalPrix.setText("");
+        productModel.removeAllElements();
+        settingComboBoxModel(productModel,"produit","name");
     }//GEN-LAST:event_SellOriginalClearButtonActionPerformed
 
     private void SellCreatedClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedClearButtonActionPerformed
-        // TODO add your handling code here:
+        SellCreatedPrix.setText("");
+        SellCreatedQte.setText("");
+        ExtraitModel.removeAllElements();
+        BottelModel.removeAllElements();
+        settingComboBoxModelWithCondition(ExtraitModel,    "sousproduit","name", "extrait=1 ");
+        settingComboBoxModel(BottelModel,"bottel","Volume"); 
     }//GEN-LAST:event_SellCreatedClearButtonActionPerformed
 
     private void SellCreatedBottelComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedBottelComboboxActionPerformed
@@ -1110,6 +1508,7 @@ public class app extends javax.swing.JFrame {
        SellContainer.removeAll();
        SellContainer.add(SellMenu,BorderLayout.NORTH);
        SellContainer.add(SellOriginalContainer,BorderLayout.CENTER);
+        
        SellContainer.repaint();
        SellContainer.revalidate();
     }//GEN-LAST:event_SellOriginalButtonActionPerformed
@@ -1169,11 +1568,18 @@ public class app extends javax.swing.JFrame {
             AddConfigTableModel.removeRow(i);
         }
         AddConfigListModel.removeAllElements();
+        
         settingListModel(AddConfigListModel, "sousproduit","Name");
+        BottelModel.removeAllElements();
+        settingComboBoxModel(BottelModel,"bottel","Volume");
+        
     }//GEN-LAST:event_AddConfigClearButtonActionPerformed
 
     private void AddBottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelAddButtonActionPerformed
-        String bottelVolume=AddBottelVolume.getText(),
+            if (ActionAddItem.equals("Add")) {
+            
+        
+            String bottelVolume=AddBottelVolume.getText(),
                bottelPA=AddBottelBuyingPrice.getText(),
                bottelPV=AddBottelSellingPrice.getText(),
                bottelQte=AddBottelQte.getText();
@@ -1182,7 +1588,11 @@ public class app extends javax.swing.JFrame {
         AddBottelBuyingPrice.setText("");
         AddBottelSellingPrice.setText("");
         AddBottelQte.setText("");  
-        JOptionPane.showMessageDialog(null, "Added \t");
+        }else{
+                
+                
+                
+            }
     }//GEN-LAST:event_AddBottelAddButtonActionPerformed
 
     private void AddBottelClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelClearButtonActionPerformed
@@ -1209,7 +1619,7 @@ public class app extends javax.swing.JFrame {
         AddProductBuyingPrice.setText("");
         AddProductSellingPrice.setText("");
         AddProductQte.setText("");
-        JOptionPane.showMessageDialog(null, "Added \t");
+        
     }//GEN-LAST:event_AddProductAddButtonActionPerformed
 
     private void AddCompontClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontClearButtonActionPerformed
@@ -1239,7 +1649,7 @@ public class app extends javax.swing.JFrame {
     private void AddConfigAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConfigAddButtonActionPerformed
         DefaultTableModel AddConfigTableModel=(DefaultTableModel) AddConfigTable.getModel();
         int selectedBotelIndex=AddConfigSelectedBottel.getSelectedIndex();
-        String selectedBottel=AddConfigSelectedBottelModel.getElementAt(selectedBotelIndex).toString(),
+        String selectedBottel=BottelModel.getElementAt(selectedBotelIndex).toString(),
                IDBSelected=sqli.SelectFromBottelWithCOndition("Volume='"+selectedBottel+"';", "IDB");
         while(AddConfigTableModel.getRowCount()>0){
             String selectedCompont=AddConfigTableModel.getValueAt(0, 0).toString(),
@@ -1254,6 +1664,165 @@ public class app extends javax.swing.JFrame {
             AddConfigTableModel.removeRow(0);
         }   
     }//GEN-LAST:event_AddConfigAddButtonActionPerformed
+
+    private void SellOriginalSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalSellButtonActionPerformed
+        try {
+            String    produit=SellOriginalCombobox.getSelectedItem().toString(),
+                  qte =sqli.SelectFromProduitWithCOndition("name = '"+produit+"';", "qte"),
+                  prixS =sqli.SelectFromProduitWithCOndition("name = '"+produit+"';", "prixVendu");
+        double qteSelled ,qteExist,qtef,prixTot,prix;
+        qteExist=Double.parseDouble(qte);
+        prix=Double.parseDouble(prixS);
+        qteSelled=Double.parseDouble(SellOriginalQte.getText());
+        prixTot=prix*qteSelled;
+        if (qteExist<qteSelled)
+               JOptionPane.showMessageDialog(null, "Stock isnt enough \t");
+        
+        qtef=qteExist-qteSelled;
+        JOptionPane.showMessageDialog(null, prixS);
+        qte=String.valueOf(qtef);
+        sqli.UpdateStockFromProduit(qte, produit);
+        SellOriginalPrix.setText(String.valueOf(prixTot));
+        SellOriginalQte.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_SellOriginalSellButtonActionPerformed
+
+    private void SellCreatedSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedSellButtonActionPerformed
+        try {
+            String SelectedBottel= SellCreatedBottelCombobox.getSelectedItem().toString(),
+                    selectedExtrait=SellCreatedExtraitCombobox.getSelectedItem().toString(),
+                    //selectedPrix=SellCreatedPrix.getText(),
+                    selectedQte=SellCreatedQte.getText(),
+                    stockBottel=sqli.SelectFromBottelWithCOndition("volume ='"+SelectedBottel+"';", "stock"),
+                    stockExtrait=sqli.SelectFromCompontWithCOndition("name='"+selectedExtrait+"';", "VolumeStock"),
+                    IDB=sqli.SelectFromBottelWithCOndition("volume ='"+SelectedBottel+"'", "IDB"),
+                    IDE=sqli.SelectFromCompontWithCOndition("name='"+selectedExtrait+"'", "IDSP"),
+                    config=sqli.SelectFromConfigrationWithCOndition("IDB='"+IDB+"' AND IDSP='"+IDE+"';", "coef"),
+                    extraitprixvendu=sqli.SelectFromBottelWithCOndition("volume ='"+SelectedBottel+"';", "prixVendu"),
+                    bottelpraixvendu=sqli.SelectFromCompontWithCOndition("name='"+selectedExtrait+"';", "prixVendu");
+                    System.out.println(IDB+" "+IDE+" "+config);
+            double extraitVolumeused=Double.parseDouble(config),
+                qte=Double.parseDouble(selectedQte),
+                extraitStocked=Double.parseDouble(stockExtrait),
+                bottelStocked=Double.parseDouble(stockBottel),
+                bottelLeft=bottelStocked-qte,
+                extraitVolumeLeft=extraitStocked-qte*extraitVolumeused,
+                prixExtrait=Double.parseDouble(extraitprixvendu),
+                prixBottel=Double.parseDouble(bottelpraixvendu),
+                    prixTotal=(prixBottel+extraitVolumeused*prixExtrait)*qte;
+                ;
+            if(extraitVolumeLeft<0){
+                JOptionPane.showMessageDialog(null, "stock is empty");
+            }
+            SellCreatedPrix.setText(String.valueOf(prixTotal));
+            sqli.UpdateStockFromSP(String.valueOf(extraitVolumeLeft), selectedExtrait);
+            sqli.UpdateStockFromBottel(String.valueOf(bottelLeft), SelectedBottel);
+            System.out.println(extraitVolumeLeft+" "+bottelLeft+" ");
+        } catch (Exception e) {
+            e.printStackTrace();
+           
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_SellCreatedSellButtonActionPerformed
+
+    private void RechargeCompontClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeCompontClearButtonActionPerformed
+        compontModel.removeAllElements();
+        settingComboBoxModel(compontModel,"sousproduit","Name");
+        RechargeCompontStock.setText("");
+       
+    }//GEN-LAST:event_RechargeCompontClearButtonActionPerformed
+
+    private void RechargeProductClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeProductClearButtonActionPerformed
+        productModel.removeAllElements();
+        settingComboBoxModel(productModel,"produit","name");
+        RechargeProductStock.setText("");
+    }//GEN-LAST:event_RechargeProductClearButtonActionPerformed
+
+    private void RechargeBottelClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeBottelClearButtonActionPerformed
+        BottelModel.removeAllElements();
+        settingComboBoxModel(BottelModel,"bottel","volume");
+        RechargeBottelQte.setText("");    }//GEN-LAST:event_RechargeBottelClearButtonActionPerformed
+
+    private void RechargeBottelRechargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeBottelRechargeButtonActionPerformed
+        try {
+            String Bottel ="",QteRecharged="",QteStocked="";
+        Bottel=RecahrgeBottelCombobox.getSelectedItem().toString();
+        QteRecharged=RechargeBottelQte.getText();
+        QteStocked=sqli.SelectFromBottelWithCOndition("volume ='"+Bottel+"';", "Stock");
+        double newStock=0,oldStock=0,recharged=0;
+        oldStock=Double.parseDouble(QteStocked);
+        recharged=Double.parseDouble(QteRecharged);
+        newStock=oldStock+recharged;
+        sqli.UpdateStockFromBottel(String.valueOf(newStock), Bottel);
+        RechargeBottelQte.setText("");
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_RechargeBottelRechargeButtonActionPerformed
+
+    private void RechargeProductRechargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeProductRechargeButtonActionPerformed
+        try {
+            String product ="",QteRecharged="",QteStocked="";
+        product=RechargeProductCombobox.getSelectedItem().toString();
+        QteRecharged=RechargeProductStock.getText();
+        QteStocked=sqli.SelectFromProduitWithCOndition("name ='"+product+"';", "qte");
+        double newStock=0,oldStock=0,recharged=0;
+        oldStock=Double.parseDouble(QteStocked);
+        recharged=Double.parseDouble(QteRecharged);
+        newStock=oldStock+recharged;
+        sqli.UpdateStockFromProduit(String.valueOf(newStock), product);
+        RechargeProductStock.setText("");
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_RechargeProductRechargeButtonActionPerformed
+
+    private void RechargeCompontRechargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeCompontRechargeButtonActionPerformed
+       try {
+            String sousproduct ="",QteRecharged="",QteStocked="";
+        sousproduct=RechargeCompontCombobox.getSelectedItem().toString();
+        QteRecharged=RechargeCompontStock.getText();
+        QteStocked=sqli.SelectFromCompontWithCOndition("name ='"+sousproduct+"';", "volumeStock");
+        double newStock=0,oldStock=0,recharged=0;
+        oldStock=Double.parseDouble(QteStocked);
+        recharged=Double.parseDouble(QteRecharged);
+        newStock=oldStock+recharged;
+        sqli.UpdateStockFromSP(String.valueOf(newStock), sousproduct);
+        RechargeCompontStock.setText("");
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_RechargeCompontRechargeButtonActionPerformed
+
+    private void BottelSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BottelSearchButtonActionPerformed
+
+    private void ProductSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductSearchButtonActionPerformed
+
+    private void CompontSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CompontSearchButtonActionPerformed
+
+    private void BottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelAddButtonActionPerformed
+       Dialog_Bottel.setLocationRelativeTo(null);
+       Dialog_Bottel.setVisible(true);
+    }//GEN-LAST:event_BottelAddButtonActionPerformed
+
+    private void CompontAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontAddButtonActionPerformed
+        Dialog_Compont.setLocationRelativeTo(null);
+        Dialog_Compont.setVisible(true);
+    }//GEN-LAST:event_CompontAddButtonActionPerformed
+
+    private void PeoductAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeoductAddButtonActionPerformed
+       Dialog_Product.setLocationRelativeTo(null);
+       Dialog_Product.setVisible(true);
+    }//GEN-LAST:event_PeoductAddButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1291,7 +1860,11 @@ public class app extends javax.swing.JFrame {
     }
     
     private DefaultListModel  AddConfigListModel = new DefaultListModel();
-    DefaultComboBoxModel AddConfigSelectedBottelModel= new DefaultComboBoxModel();
+    
+    private DefaultComboBoxModel BottelModel= new DefaultComboBoxModel(),
+                         productModel= new DefaultComboBoxModel(),
+                         ExtraitModel= new DefaultComboBoxModel(),
+                         compontModel=new DefaultComboBoxModel() ;
     private sql sqli= new sql();   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1299,7 +1872,6 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JButton AddBottelButton;
     private javax.swing.JTextField AddBottelBuyingPrice;
     private javax.swing.JButton AddBottelClearButton;
-    private javax.swing.JPanel AddBottelContainer;
     private javax.swing.JTextField AddBottelQte;
     private javax.swing.JTextField AddBottelSellingPrice;
     private javax.swing.JTextField AddBottelVolume;
@@ -1333,9 +1905,33 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JTextField AddProductName;
     private javax.swing.JTextField AddProductQte;
     private javax.swing.JTextField AddProductSellingPrice;
+    private javax.swing.JButton BottelAddButton;
+    private javax.swing.JButton BottelDeleteButton;
+    private javax.swing.JButton BottelModifieButton;
+    private javax.swing.JTextField BottelSearchBar;
+    private javax.swing.JButton BottelSearchButton;
+    private javax.swing.JTable BottelTable;
+    private javax.swing.JButton CompontAddButton;
+    private javax.swing.JButton CompontDeleteButton;
+    private javax.swing.JButton CompontModifieButton;
+    private javax.swing.JTextField CompontSearchBar;
+    private javax.swing.JButton CompontSearchButton;
+    private javax.swing.JTable CompontTable;
     private javax.swing.JPanel Container;
+    private javax.swing.JPanel DialogBottelContainer;
+    private javax.swing.JPanel DialogCompontContainer;
+    private javax.swing.JPanel DialogProductContainer;
+    private javax.swing.JDialog Dialog_Bottel;
+    private javax.swing.JDialog Dialog_Compont;
+    private javax.swing.JDialog Dialog_Product;
     private javax.swing.JCheckBox ExtraitCheckbox;
     private javax.swing.JPanel HomeMenu;
+    private javax.swing.JButton PeoductAddButton;
+    private javax.swing.JButton ProductDeleteButton;
+    private javax.swing.JButton ProductModifieButton;
+    private javax.swing.JTextField ProductSearchBar;
+    private javax.swing.JButton ProductSearchButton;
+    private javax.swing.JTable ProductTable;
     private javax.swing.JComboBox<String> RecahrgeBottelCombobox;
     private javax.swing.JButton RechargeBottelButton;
     private javax.swing.JButton RechargeBottelClearButton;
@@ -1377,6 +1973,7 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JButton SellOriginalSellButton;
     private javax.swing.JButton StockButton;
     private javax.swing.JPanel StockContainer;
+    private javax.swing.JPanel addBottelContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1397,7 +1994,10 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1406,5 +2006,8 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }
