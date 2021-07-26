@@ -1,21 +1,20 @@
 
 import java.awt.BorderLayout;
-import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
 public class app extends javax.swing.JFrame {
-    public String ActionAddItem="";
     /**
      * Creates new form app
      */
     public app() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1126,8 +1125,18 @@ public class app extends javax.swing.JFrame {
         });
 
         CompontModifieButton.setText("Modify");
+        CompontModifieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompontModifieButtonActionPerformed(evt);
+            }
+        });
 
         CompontDeleteButton.setText("Delete");
+        CompontDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompontDeleteButtonActionPerformed(evt);
+            }
+        });
 
         CompontSearchButton.setText("Search");
         CompontSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1208,6 +1217,11 @@ public class app extends javax.swing.JFrame {
         });
 
         ProductModifieButton.setText("Modify");
+        ProductModifieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductModifieButtonActionPerformed(evt);
+            }
+        });
 
         ProductDeleteButton.setText("Delete");
         ProductDeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1289,7 +1303,7 @@ public class app extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 500));
+        setPreferredSize(new java.awt.Dimension(1000, 500));
 
         Container.setLayout(new java.awt.BorderLayout(20, 20));
 
@@ -1578,23 +1592,20 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_AddConfigClearButtonActionPerformed
 
     private void AddBottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelAddButtonActionPerformed
-            if (ActionAddItem.equals("Add")) {
-            
-        
-            String bottelVolume=AddBottelVolume.getText(),
+        String bottelVolume=AddBottelVolume.getText(),
                bottelPA=AddBottelBuyingPrice.getText(),
                bottelPV=AddBottelSellingPrice.getText(),
-               bottelQte=AddBottelQte.getText();
+               bottelQte=AddBottelQte.getText();   
+        if (bottelModifie) {
+            sqli.UpdateBottel(bottelVolume, bottelQte, bottelPA, bottelPV,IDBselected);
+        }else{      
         sqli.insertToBottel(bottelVolume, bottelQte, bottelPA, bottelPV);
+            }
         AddBottelVolume.setText("");
         AddBottelBuyingPrice.setText("");
         AddBottelSellingPrice.setText("");
-        AddBottelQte.setText("");  
-        }else{
-                
-                
-                
-            }
+        AddBottelQte.setText(""); 
+        sqli.fillBottelTable(BottelTable);
     }//GEN-LAST:event_AddBottelAddButtonActionPerformed
 
     private void AddBottelClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelClearButtonActionPerformed
@@ -1612,16 +1623,21 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_AddProductClearButtonActionPerformed
 
     private void AddProductAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductAddButtonActionPerformed
+        
         String Name=AddProductName.getText(),
                PA=AddProductBuyingPrice.getText(),
                PV=AddProductSellingPrice.getText(),
                Qte=AddProductQte.getText();
+        if (productModifie){
+        sqli.UpdateProduct(Name, Qte, PA, PV,IDPselected);
+        }else {
         sqli.insertToProduct(Name, Qte, PA, PV);
+        }
         AddProductName.setText("");
         AddProductBuyingPrice.setText("");
         AddProductSellingPrice.setText("");
         AddProductQte.setText("");
-        
+        sqli.fillProductTable(ProductTable);
     }//GEN-LAST:event_AddProductAddButtonActionPerformed
 
     private void AddCompontClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontClearButtonActionPerformed
@@ -1633,14 +1649,23 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_AddCompontClearButtonActionPerformed
 
     private void AddCompontAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontAddButtonActionPerformed
-        String Name=AddCompontName.getText(),
+       String Name=AddCompontName.getText(),
                PA=AddCompontBuyingPrice.getText(),
                PV=AddCompontSellingPrice.getText(),
                Qte=AddCompontQte.getText(),
                extrait="0";
-        if(ExtraitCheckbox.isSelected())
+       if(ExtraitCheckbox.isSelected())
            extrait="1";
+        else extrait="0";
+        if (compontModifie){
+            
+           sqli.UpdateCompont(Name, Qte, PA, PV, extrait, IDSPselected);
+       }else{
+            
+        
         sqli.insertToSP(Name, Qte, PA, PV, extrait);
+       }
+        sqli.fillCompontTable(CompontTable);
         AddCompontName.setText("");
         AddCompontBuyingPrice.setText("");
         AddCompontSellingPrice.setText("");
@@ -1813,6 +1838,11 @@ public class app extends javax.swing.JFrame {
 
     private void BottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelAddButtonActionPerformed
        Dialog_Bottel.setLocationRelativeTo(null);
+       bottelModifie=false;
+       AddBottelVolume.setText("");
+            AddBottelBuyingPrice.setText("");
+            AddBottelSellingPrice.setText("");
+            AddBottelQte.setText("");
        AddBottelAddButton.setText("ADD");
        Dialog_Bottel.setTitle("ADD Bottels");
        Dialog_Bottel.setVisible(true);
@@ -1820,19 +1850,48 @@ public class app extends javax.swing.JFrame {
 
     private void CompontAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontAddButtonActionPerformed
         Dialog_Compont.setLocationRelativeTo(null);
+        compontModifie=false;
+        AddCompontName.setText("");
+            AddCompontBuyingPrice.setText("");
+            AddCompontSellingPrice.setText("");
+            AddCompontQte.setText("");
+            ExtraitCheckbox.setSelected(false);
+            AddCompontAddButton.setText("ADD");
+       Dialog_Compont.setTitle("ADD Componts");
         Dialog_Compont.setVisible(true);
     }//GEN-LAST:event_CompontAddButtonActionPerformed
 
     private void PeoductAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeoductAddButtonActionPerformed
        Dialog_Product.setLocationRelativeTo(null);
+       productModifie=false;
+        AddProductName.setText("");
+            AddProductBuyingPrice.setText("");
+            AddProductSellingPrice.setText("");
+            AddProductQte.setText("");
+            
+            AddProductAddButton.setText("ADD");
+       Dialog_Compont.setTitle("ADD Product");
        Dialog_Product.setVisible(true);
     }//GEN-LAST:event_PeoductAddButtonActionPerformed
 
     private void BottelModifieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelModifieButtonActionPerformed
-       Dialog_Bottel.setLocationRelativeTo(null);
-       AddBottelAddButton.setText("Modify");
+       
+       try {
+           Dialog_Bottel.setLocationRelativeTo(null);
+       bottelModifie=true;
+       String selected [] = methode.getTableContent(BottelTable);
+       IDBselected=selected[0];
+        AddBottelVolume.setText(selected[1]);
+        AddBottelBuyingPrice.setText(selected[2]);
+        AddBottelSellingPrice.setText(selected[3]);
+        AddBottelQte.setText(selected[4]);
+        AddBottelAddButton.setText("Modify");
        Dialog_Bottel.setTitle("Modify Bottels");
        Dialog_Bottel.setVisible(true);
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "nothing is selected");
+            }
+       
     }//GEN-LAST:event_BottelModifieButtonActionPerformed
 
     private void BottelDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelDeleteButtonActionPerformed
@@ -1841,7 +1900,7 @@ public class app extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
         }else{
            String idBottel= BottelTable.getValueAt(index, 0).toString();
-           sqli.deleteFromTable(idBottel);
+           sqli.deleteFromTable("bottel","IDB='"+idBottel+"';");
            sqli.fillBottelTable(BottelTable);
         }
      
@@ -1856,6 +1915,57 @@ public class app extends javax.swing.JFrame {
       
       System.out.println(ProductTable.getRowCount());
     }//GEN-LAST:event_ProductDeleteButtonActionPerformed
+
+    private void CompontModifieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontModifieButtonActionPerformed
+      
+      try {
+            Dialog_Compont.setLocationRelativeTo(null);
+            compontModifie=true;
+            String selected [] = methode.getTableContent(CompontTable);
+            IDSPselected=selected[0];
+            AddCompontName.setText(selected[1]);
+            AddCompontBuyingPrice.setText(selected[2]);
+            AddCompontSellingPrice.setText(selected[3]);
+            AddCompontQte.setText(selected[4]);
+            if (selected[5].equalsIgnoreCase("extrait"))
+                ExtraitCheckbox.setSelected(true);
+            else ExtraitCheckbox.setSelected(false);
+            AddCompontAddButton.setText("Modify");
+            Dialog_Compont.setTitle("Modify Compont");
+            Dialog_Compont.setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "nothing is selected");
+            }
+       
+        
+       
+    }//GEN-LAST:event_CompontModifieButtonActionPerformed
+
+    private void ProductModifieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductModifieButtonActionPerformed
+        
+      try {
+          Dialog_Product.setLocationRelativeTo(null);
+        productModifie=true;
+            String selected [] = methode.getTableContent(ProductTable);
+            IDPselected=selected[0];
+            AddProductName.setText(selected[1]);
+            AddProductBuyingPrice.setText(selected[2]);
+            AddProductSellingPrice.setText(selected[3]);
+            AddProductQte.setText(selected[4]);
+           AddProductAddButton.setText("Modify");
+       Dialog_Product.setTitle("Modify Compont");
+       Dialog_Product.setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "nothing is selected");
+            }
+       
+        
+       
+    }//GEN-LAST:event_ProductModifieButtonActionPerformed
+
+    private void CompontDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontDeleteButtonActionPerformed
+       
+    }//GEN-LAST:event_CompontDeleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1898,7 +2008,10 @@ public class app extends javax.swing.JFrame {
                          productModel= new DefaultComboBoxModel(),
                          ExtraitModel= new DefaultComboBoxModel(),
                          compontModel=new DefaultComboBoxModel() ;
+    private boolean bottelModifie=false,productModifie=false,compontModifie=false;
+    private String IDPselected="",IDSPselected="",IDBselected="";
     private sql sqli= new sql();   
+    private Methods methode= new Methods();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBottelAddButton;

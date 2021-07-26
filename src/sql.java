@@ -73,6 +73,7 @@ public class sql {
             }
     }
 //==============================================================================
+  
 //==============================================================================
   public void insertToConfig(String Param1,String Param2,String Param3) {
             
@@ -94,6 +95,65 @@ public class sql {
             }
     }
 //==============================================================================
+  //==============================================================================
+ public void UpdateBottel(String volume,String stock,String prixA,String PrixV,String IDB) {
+            
+            String sql = "UPDATE `bottel` SET `Volume`=?,`Stock`=?,`PrixAcha`=?,`PrixVendu`=? WHERE IDB=?";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, volume);
+                pst.setString(2, stock);
+                pst.setString(3, prixA);
+                pst.setString(4, PrixV);
+                pst.setString(5, IDB);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated Bottel \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "BottelUpdate\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+  //==============================================================================
+ public void UpdateProduct(String name,String qte,String prixA,String PrixV,String IDP) {
+            
+            String sql = "UPDATE `produit` SET `name`=?,`qte`=?,`PrixAcha`=?,`PrixVendu`=? WHERE IDP=?";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setString(2, qte);
+                pst.setString(3, prixA);
+                pst.setString(4, PrixV);
+                pst.setString(5, IDP);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated Produit \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "produitUpdate\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+   //==============================================================================
+ public void UpdateCompont(String name,String VolumeStock,String prixA,String PrixV,String extrait,String IDSP) {
+            
+            String sql = "UPDATE `sousproduit` SET `name`=?,`VolumeStock`=?,`PrixAcha`=?,`PrixVendu`=?,`extrait`=? WHERE IDSP=?";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setString(2, VolumeStock);
+                pst.setString(3, prixA);
+                pst.setString(4, PrixV);
+                pst.setString(5, extrait);
+                pst.setString(6, IDSP);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "updated Compont \t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "CompontSUpdate\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+ 
 //==============================================================================
  public void UpdateStockFromSP(String Param1,String Param2) {
             
@@ -229,7 +289,7 @@ public class sql {
         }
         
         
-      String sql ="select * from sousproduit ";
+      String sql ="select * from sousproduit where ";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -528,8 +588,8 @@ public class sql {
     }
 //==============================================================================
 //==============================================================================
-    public void deleteFromTable(String idBottel){
-        String sqql="update bottel set actif=0 where idb='"+idBottel+"'";
+    public void deleteFromTable(String table,String Condition){
+        String sqql="update "+table+" set actif=0 where "+Condition;
         //String sql="DELETE FROM "+table+" WHERE "+attribu+"='"+condition+"'";
         try {
             
