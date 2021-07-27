@@ -243,7 +243,7 @@ public class sql {
             }
     }
 //==============================================================================
-  public void fillBottelTable(JTable Botteltable){
+  public void fillBottelTable(JTable Botteltable,String active){
       
         DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
       
@@ -252,7 +252,7 @@ public class sql {
         }
         
         
-      String sql ="select * from bottel where actif=1";
+      String sql ="select * from bottel where `active`='"+active+"'";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -280,7 +280,7 @@ public class sql {
   }
 //==============================================================================
   //==============================================================================
-  public void fillCompontTable(JTable Botteltable){
+  public void fillCompontTable(JTable Botteltable,String active){
       
         DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
       
@@ -289,7 +289,7 @@ public class sql {
         }
         
         
-      String sql ="select * from sousproduit where ";
+      String sql ="select * from sousproduit where `active`='"+active+"' ";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -319,7 +319,7 @@ public class sql {
   }
 //==============================================================================
   //==============================================================================
-  public void fillProductTable(JTable Botteltable){
+  public void fillProductTable(JTable Botteltable,String active){
       
         DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
       
@@ -328,7 +328,7 @@ public class sql {
         }
         
         
-      String sql ="select * from produit";
+      String sql ="select * from produit where `active`= '"+active+"'";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -589,8 +589,8 @@ public class sql {
 //==============================================================================
 //==============================================================================
     public void deleteFromTable(String table,String Condition){
-        String sqql="update "+table+" set actif=0 where "+Condition;
-        //String sql="DELETE FROM "+table+" WHERE "+attribu+"='"+condition+"'";
+        String sqql="update "+table+" set active=0 where "+Condition;
+        
         try {
             
        pst=conn.prepareStatement(sqql);
@@ -600,6 +600,25 @@ public class sql {
             
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "DeleteFromTable \n "+e.getMessage());
+        }
+        
+        
+    }
+    
+//==============================================================================
+    //==============================================================================
+    public void restoreFromTable(String table,String Condition){
+        String sqql="update "+table+" set active=1 where "+Condition;
+        
+        try {
+            
+       pst=conn.prepareStatement(sqql);
+       pst.execute();
+        
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "restoreFromTable \n "+e.getMessage());
         }
         
         

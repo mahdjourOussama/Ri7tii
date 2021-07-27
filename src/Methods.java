@@ -14,4 +14,8 @@ public class Methods {
             }
             return selectedValues;        
     }
+        public Double CalculatingProductPrice(){
+            double price=0;
+            return price;
+        }
 }

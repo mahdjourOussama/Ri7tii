@@ -22,7 +22,6 @@ public class app extends javax.swing.JFrame {
         AddContainer = new javax.swing.JPanel();
         SellContainer = new javax.swing.JPanel();
         RechargeContainer = new javax.swing.JPanel();
-        StockContainer = new javax.swing.JPanel();
         AddMenu = new javax.swing.JPanel();
         AddConfigButton = new javax.swing.JButton();
         AddBottelButton = new javax.swing.JButton();
@@ -111,6 +110,7 @@ public class app extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         BottelTable = new javax.swing.JTable();
         jLabel30 = new javax.swing.JLabel();
+        ProductRestoreButton1 = new javax.swing.JButton();
         Dialog_Compont = new javax.swing.JDialog();
         DialogCompontContainer = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -145,6 +145,7 @@ public class app extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         CompontTable = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
+        ComponetRestoreButton = new javax.swing.JButton();
         AddProductContainer = new javax.swing.JPanel();
         PeoductAddButton = new javax.swing.JButton();
         ProductModifieButton = new javax.swing.JButton();
@@ -154,20 +155,42 @@ public class app extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         ProductTable = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
+        ProductRestoreButton = new javax.swing.JButton();
+        DeletedProductDialog = new javax.swing.JDialog();
+        DeletedProduct = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        DeletedProductTable = new javax.swing.JTable();
+        DeletedProductSearchButton = new javax.swing.JButton();
+        DeletedProductSearchBar = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        RestoreDeletedProductButton = new javax.swing.JButton();
+        DeletedCompontDialog = new javax.swing.JDialog();
+        DeletedCompont = new javax.swing.JPanel();
+        RestoreDeletedCompontButton = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        DeletedCompontTable = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        DeletedCompontSearchBar = new javax.swing.JTextField();
+        DeletedCompontSearchButton = new javax.swing.JButton();
+        DeletedBottelDialog = new javax.swing.JDialog();
+        DeletedBottel = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        DeletedBottelTable = new javax.swing.JTable();
+        DeletedBottelSearchBar = new javax.swing.JTextField();
+        DeletedBottelSearchButton = new javax.swing.JButton();
+        RestoreDeletedBottelButton = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         HomeMenu = new javax.swing.JPanel();
         AddButton = new javax.swing.JButton();
         SellButton = new javax.swing.JButton();
         RechargeButton = new javax.swing.JButton();
-        StockButton = new javax.swing.JButton();
 
         AddContainer.setLayout(new java.awt.BorderLayout(20, 20));
 
         SellContainer.setLayout(new java.awt.BorderLayout(20, 20));
 
         RechargeContainer.setLayout(new java.awt.BorderLayout(20, 20));
-
-        StockContainer.setLayout(new java.awt.BorderLayout(20, 20));
 
         AddMenu.setLayout(new java.awt.GridLayout(1, 0, 20, 20));
 
@@ -883,17 +906,25 @@ public class app extends javax.swing.JFrame {
 
         jLabel30.setText("Bottels");
 
+        ProductRestoreButton1.setText("Restore");
+        ProductRestoreButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductRestoreButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addBottelContainerLayout = new javax.swing.GroupLayout(addBottelContainer);
         addBottelContainer.setLayout(addBottelContainerLayout);
         addBottelContainerLayout.setHorizontalGroup(
             addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addBottelContainerLayout.createSequentialGroup()
                 .addGroup(addBottelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BottelDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BottelModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BottelAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(BottelModifieButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BottelAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ProductRestoreButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BottelDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(addBottelContainerLayout.createSequentialGroup()
                 .addContainerGap()
@@ -918,7 +949,9 @@ public class app extends javax.swing.JFrame {
                         .addComponent(BottelAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BottelModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ProductRestoreButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(BottelDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1168,17 +1201,25 @@ public class app extends javax.swing.JFrame {
 
         jLabel29.setText("COmponts");
 
+        ComponetRestoreButton.setText("Restore");
+        ComponetRestoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComponetRestoreButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddCompontContainerLayout = new javax.swing.GroupLayout(AddCompontContainer);
         AddCompontContainer.setLayout(AddCompontContainerLayout);
         AddCompontContainerLayout.setHorizontalGroup(
             AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddCompontContainerLayout.createSequentialGroup()
                 .addGroup(AddCompontContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CompontDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CompontModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CompontAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ComponetRestoreButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CompontDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CompontModifieButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CompontAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(AddCompontContainerLayout.createSequentialGroup()
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1203,7 +1244,9 @@ public class app extends javax.swing.JFrame {
                         .addComponent(CompontAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(CompontModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ComponetRestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addComponent(CompontDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1260,35 +1303,42 @@ public class app extends javax.swing.JFrame {
 
         jLabel28.setText("Products");
 
+        ProductRestoreButton.setText("Restore");
+        ProductRestoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductRestoreButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddProductContainerLayout = new javax.swing.GroupLayout(AddProductContainer);
         AddProductContainer.setLayout(AddProductContainerLayout);
         AddProductContainerLayout.setHorizontalGroup(
             AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddProductContainerLayout.createSequentialGroup()
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ProductModifieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PeoductAddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ProductDeleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4)
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(PeoductAddButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductModifieButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductRestoreButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductDeleteButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AddProductContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddProductContainerLayout.createSequentialGroup()
+                        .addComponent(ProductSearchBar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ProductSearchButton))
+                    .addComponent(jScrollPane4))
                 .addContainerGap())
-            .addGroup(AddProductContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ProductSearchBar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ProductSearchButton)
-                .addGap(12, 12, 12))
         );
         AddProductContainerLayout.setVerticalGroup(
             AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddProductContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ProductSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ProductSearchButton))
+                .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ProductSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductSearchButton)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(AddProductContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1296,20 +1346,314 @@ public class app extends javax.swing.JFrame {
                         .addComponent(PeoductAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ProductModifieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ProductRestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(ProductDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
+        DeletedProductDialog.setTitle("Deleted Products");
+        DeletedProductDialog.setMinimumSize(new java.awt.Dimension(800, 400));
+        DeletedProductDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        jScrollPane6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        DeletedProductTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DeletedProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDP", "Name", "PrixAcha", "PrixVendu", "Stock"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(DeletedProductTable);
+
+        DeletedProductSearchButton.setText("Search");
+        DeletedProductSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletedProductSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setText("Products");
+
+        RestoreDeletedProductButton.setText("Restore");
+        RestoreDeletedProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestoreDeletedProductButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DeletedProductLayout = new javax.swing.GroupLayout(DeletedProduct);
+        DeletedProduct.setLayout(DeletedProductLayout);
+        DeletedProductLayout.setHorizontalGroup(
+            DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeletedProductLayout.createSequentialGroup()
+                .addComponent(RestoreDeletedProductButton)
+                .addGap(0, 656, Short.MAX_VALUE))
+            .addGroup(DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedProductLayout.createSequentialGroup()
+                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addGroup(DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(DeletedProductLayout.createSequentialGroup()
+                            .addComponent(DeletedProductSearchBar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(DeletedProductSearchButton)
+                            .addGap(2, 2, 2))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        DeletedProductLayout.setVerticalGroup(
+            DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeletedProductLayout.createSequentialGroup()
+                .addContainerGap(293, Short.MAX_VALUE)
+                .addComponent(RestoreDeletedProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedProductLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(DeletedProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeletedProductSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeletedProductSearchButton))
+                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        javax.swing.GroupLayout DeletedProductDialogLayout = new javax.swing.GroupLayout(DeletedProductDialog.getContentPane());
+        DeletedProductDialog.getContentPane().setLayout(DeletedProductDialogLayout);
+        DeletedProductDialogLayout.setHorizontalGroup(
+            DeletedProductDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(DeletedProductDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedProductDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(DeletedProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        DeletedProductDialogLayout.setVerticalGroup(
+            DeletedProductDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 344, Short.MAX_VALUE)
+            .addGroup(DeletedProductDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedProductDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(DeletedProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        DeletedCompontDialog.setTitle("Deleted Componts");
+        DeletedCompontDialog.setMinimumSize(new java.awt.Dimension(800, 400));
+        DeletedCompontDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        RestoreDeletedCompontButton.setText("Restore");
+        RestoreDeletedCompontButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestoreDeletedCompontButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        DeletedCompontTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DeletedCompontTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDSP", "Name", "PrixAcha", "PrixVendu", "Stock", "Extrait"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(DeletedCompontTable);
+
+        jLabel32.setText("COmponts");
+
+        DeletedCompontSearchButton.setText("Search");
+        DeletedCompontSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletedCompontSearchButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DeletedCompontLayout = new javax.swing.GroupLayout(DeletedCompont);
+        DeletedCompont.setLayout(DeletedCompontLayout);
+        DeletedCompontLayout.setHorizontalGroup(
+            DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeletedCompontLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(DeletedCompontLayout.createSequentialGroup()
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(DeletedCompontSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeletedCompontSearchButton))
+                    .addGroup(DeletedCompontLayout.createSequentialGroup()
+                        .addComponent(RestoreDeletedCompontButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        DeletedCompontLayout.setVerticalGroup(
+            DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeletedCompontLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(DeletedCompontLayout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addComponent(DeletedCompontSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DeletedCompontSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DeletedCompontLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                        .addComponent(RestoreDeletedCompontButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout DeletedCompontDialogLayout = new javax.swing.GroupLayout(DeletedCompontDialog.getContentPane());
+        DeletedCompontDialog.getContentPane().setLayout(DeletedCompontDialogLayout);
+        DeletedCompontDialogLayout.setHorizontalGroup(
+            DeletedCompontDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 502, Short.MAX_VALUE)
+            .addGroup(DeletedCompontDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DeletedCompont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DeletedCompontDialogLayout.setVerticalGroup(
+            DeletedCompontDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 344, Short.MAX_VALUE)
+            .addGroup(DeletedCompontDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(DeletedCompont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        DeletedBottelDialog.setTitle("Deleted Bottels");
+        DeletedBottelDialog.setMinimumSize(new java.awt.Dimension(800, 400));
+        DeletedBottelDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Bottels");
+        jLabel33.setToolTipText("");
+        jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jScrollPane8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        DeletedBottelTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DeletedBottelTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IDB", "Volume", "PrixAcha", "PrixVendu", "Stock"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(DeletedBottelTable);
+
+        DeletedBottelSearchButton.setText("Search");
+        DeletedBottelSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletedBottelSearchButtonActionPerformed(evt);
+            }
+        });
+
+        RestoreDeletedBottelButton.setText("Restore");
+        RestoreDeletedBottelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestoreDeletedBottelButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DeletedBottelLayout = new javax.swing.GroupLayout(DeletedBottel);
+        DeletedBottel.setLayout(DeletedBottelLayout);
+        DeletedBottelLayout.setHorizontalGroup(
+            DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeletedBottelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RestoreDeletedBottelButton)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(618, Short.MAX_VALUE))
+            .addGroup(DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedBottelLayout.createSequentialGroup()
+                    .addGap(94, 94, 94)
+                    .addGroup(DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(DeletedBottelLayout.createSequentialGroup()
+                            .addComponent(DeletedBottelSearchBar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(DeletedBottelSearchButton))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE))
+                    .addGap(5, 5, 5)))
+        );
+        DeletedBottelLayout.setVerticalGroup(
+            DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeletedBottelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                .addComponent(RestoreDeletedBottelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DeletedBottelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(DeletedBottelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DeletedBottelSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DeletedBottelSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        javax.swing.GroupLayout DeletedBottelDialogLayout = new javax.swing.GroupLayout(DeletedBottelDialog.getContentPane());
+        DeletedBottelDialog.getContentPane().setLayout(DeletedBottelDialogLayout);
+        DeletedBottelDialogLayout.setHorizontalGroup(
+            DeletedBottelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(DeletedBottel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        DeletedBottelDialogLayout.setVerticalGroup(
+            DeletedBottelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(DeletedBottel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ri7ti APP");
         setPreferredSize(new java.awt.Dimension(1000, 500));
 
         Container.setLayout(new java.awt.BorderLayout(20, 20));
 
-        HomeMenu.setMinimumSize(new java.awt.Dimension(150, 400));
-        HomeMenu.setPreferredSize(new java.awt.Dimension(150, 400));
-        HomeMenu.setLayout(new java.awt.GridLayout(4, 0, 1, 100));
+        HomeMenu.setMinimumSize(new java.awt.Dimension(130, 400));
+        HomeMenu.setPreferredSize(new java.awt.Dimension(100, 400));
+        HomeMenu.setLayout(new java.awt.GridLayout(3, 0, 244, 100));
 
         AddButton.setText("ADD New Items");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1334,14 +1678,6 @@ public class app extends javax.swing.JFrame {
             }
         });
         HomeMenu.add(RechargeButton);
-
-        StockButton.setText("View Stock");
-        StockButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StockButtonActionPerformed(evt);
-            }
-        });
-        HomeMenu.add(StockButton);
 
         Container.add(HomeMenu, java.awt.BorderLayout.CENTER);
 
@@ -1396,15 +1732,6 @@ public class app extends javax.swing.JFrame {
        Container.revalidate();
     }//GEN-LAST:event_SellButtonActionPerformed
 
-    private void StockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StockButtonActionPerformed
-       Container.removeAll();
-       Container.add(HomeMenu,BorderLayout.WEST);
-       Container.add(StockContainer,BorderLayout.CENTER);
-       
-       Container.repaint();
-       Container.revalidate();
-    }//GEN-LAST:event_StockButtonActionPerformed
-
     private void AddConfigButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConfigButtonActionPerformed
        AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
@@ -1418,7 +1745,7 @@ public class app extends javax.swing.JFrame {
     private void AddBottelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelButtonActionPerformed
 
         
-    sqli.fillBottelTable(BottelTable);
+    sqli.fillBottelTable(BottelTable,"1");
 
 
        AddContainer.removeAll();
@@ -1430,7 +1757,7 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBottelButtonActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-     sqli.fillProductTable(ProductTable);
+     sqli.fillProductTable(ProductTable,"1");
         AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
        AddContainer.add(AddProductContainer,BorderLayout.CENTER);
@@ -1439,7 +1766,7 @@ public class app extends javax.swing.JFrame {
            }//GEN-LAST:event_AddProductButtonActionPerformed
 
     private void AddCompontButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontButtonActionPerformed
-        sqli.fillCompontTable(CompontTable);
+        sqli.fillCompontTable(CompontTable,"1");
         AddContainer.removeAll();
        AddContainer.add(AddMenu,BorderLayout.NORTH);
        AddContainer.add(AddCompontContainer,BorderLayout.CENTER);
@@ -1491,7 +1818,7 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_RechargeCompontButtonActionPerformed
 
     private void SellOriginalComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalComboboxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_SellOriginalComboboxActionPerformed
 
     private void SellOriginalClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalClearButtonActionPerformed
@@ -1605,7 +1932,7 @@ public class app extends javax.swing.JFrame {
         AddBottelBuyingPrice.setText("");
         AddBottelSellingPrice.setText("");
         AddBottelQte.setText(""); 
-        sqli.fillBottelTable(BottelTable);
+        sqli.fillBottelTable(BottelTable,"1");
     }//GEN-LAST:event_AddBottelAddButtonActionPerformed
 
     private void AddBottelClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBottelClearButtonActionPerformed
@@ -1637,7 +1964,7 @@ public class app extends javax.swing.JFrame {
         AddProductBuyingPrice.setText("");
         AddProductSellingPrice.setText("");
         AddProductQte.setText("");
-        sqli.fillProductTable(ProductTable);
+        sqli.fillProductTable(ProductTable,"1");
     }//GEN-LAST:event_AddProductAddButtonActionPerformed
 
     private void AddCompontClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontClearButtonActionPerformed
@@ -1665,7 +1992,7 @@ public class app extends javax.swing.JFrame {
         
         sqli.insertToSP(Name, Qte, PA, PV, extrait);
        }
-        sqli.fillCompontTable(CompontTable);
+        sqli.fillCompontTable(CompontTable,"1");
         AddCompontName.setText("");
         AddCompontBuyingPrice.setText("");
         AddCompontSellingPrice.setText("");
@@ -1694,20 +2021,18 @@ public class app extends javax.swing.JFrame {
 
     private void SellOriginalSellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalSellButtonActionPerformed
         try {
-            String    produit=SellOriginalCombobox.getSelectedItem().toString(),
+            String  produit=SellOriginalCombobox.getSelectedItem().toString(),
                   qte =sqli.SelectFromProduitWithCOndition("name = '"+produit+"';", "qte"),
                   prixS =sqli.SelectFromProduitWithCOndition("name = '"+produit+"';", "prixVendu");
-        double qteSelled ,qteExist,qtef,prixTot,prix;
+        double qteSelled ,qteExist,qteRest,prixTot,prix;
         qteExist=Double.parseDouble(qte);
         prix=Double.parseDouble(prixS);
         qteSelled=Double.parseDouble(SellOriginalQte.getText());
         prixTot=prix*qteSelled;
-        if (qteExist<qteSelled)
-               JOptionPane.showMessageDialog(null, "Stock isnt enough \t");
-        
-        qtef=qteExist-qteSelled;
+       
+        qteRest=qteExist-qteSelled;
         JOptionPane.showMessageDialog(null, prixS);
-        qte=String.valueOf(qtef);
+        qte=String.valueOf(qteRest);
         sqli.UpdateStockFromProduit(qte, produit);
         SellOriginalPrix.setText(String.valueOf(prixTot));
         SellOriginalQte.setText("");
@@ -1901,19 +2226,20 @@ public class app extends javax.swing.JFrame {
         }else{
            String idBottel= BottelTable.getValueAt(index, 0).toString();
            sqli.deleteFromTable("bottel","IDB='"+idBottel+"';");
-           sqli.fillBottelTable(BottelTable);
+           sqli.fillBottelTable(BottelTable,"1");
         }
      
     }//GEN-LAST:event_BottelDeleteButtonActionPerformed
 
     private void ProductDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductDeleteButtonActionPerformed
-        DefaultTableModel tab =(DefaultTableModel) ProductTable.getModel();
-      for (int i = 0; i < tab.getRowCount();i ++) {
-            tab.removeRow(0);
+        int index=ProductTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String ID= ProductTable.getValueAt(index, 0).toString();
+           sqli.deleteFromTable("produit","IDP='"+ID+"';");
+           sqli.fillProductTable(ProductTable,"1");
         }
-      ProductTable.setModel(tab);
-      
-      System.out.println(ProductTable.getRowCount());
     }//GEN-LAST:event_ProductDeleteButtonActionPerformed
 
     private void CompontModifieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontModifieButtonActionPerformed
@@ -1964,8 +2290,82 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductModifieButtonActionPerformed
 
     private void CompontDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontDeleteButtonActionPerformed
-       
+        int index=CompontTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String ID= CompontTable.getValueAt(index, 0).toString();
+           sqli.deleteFromTable("sousproduit","IDSP='"+ID+"';");
+           sqli.fillCompontTable(CompontTable,"1");
+        }
+     
     }//GEN-LAST:event_CompontDeleteButtonActionPerformed
+
+    private void ProductRestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductRestoreButtonActionPerformed
+        DeletedProductDialog.setLocationRelativeTo(null);
+        sqli.fillProductTable(DeletedProductTable, "0");
+        DeletedProductDialog.setVisible(true);
+    }//GEN-LAST:event_ProductRestoreButtonActionPerformed
+
+    private void DeletedProductSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedProductSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletedProductSearchButtonActionPerformed
+
+    private void DeletedCompontSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedCompontSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletedCompontSearchButtonActionPerformed
+
+    private void DeletedBottelSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedBottelSearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletedBottelSearchButtonActionPerformed
+
+    private void ComponetRestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComponetRestoreButtonActionPerformed
+        DeletedCompontDialog.setLocationRelativeTo(null);
+        sqli.fillCompontTable(DeletedCompontTable, "0");
+        DeletedCompontDialog.setVisible(true);
+    }//GEN-LAST:event_ComponetRestoreButtonActionPerformed
+
+    private void ProductRestoreButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductRestoreButton1ActionPerformed
+        DeletedBottelDialog.setLocationRelativeTo(null);
+        sqli.fillBottelTable(DeletedBottelTable, "0");
+        DeletedBottelDialog.setVisible(true);
+    }//GEN-LAST:event_ProductRestoreButton1ActionPerformed
+
+    private void RestoreDeletedProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreDeletedProductButtonActionPerformed
+        int index=DeletedProductTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String id= DeletedProductTable.getValueAt(index, 0).toString();
+           sqli.restoreFromTable("produit","IDP='"+id+"';");
+           sqli.fillProductTable(ProductTable,"1");
+           sqli.fillProductTable(DeletedProductTable,"0");
+        }
+    }//GEN-LAST:event_RestoreDeletedProductButtonActionPerformed
+
+    private void RestoreDeletedCompontButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreDeletedCompontButtonActionPerformed
+        int index=DeletedCompontTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String id= DeletedCompontTable.getValueAt(index, 0).toString();
+           sqli.restoreFromTable("sousproduit","IDSP='"+id+"';");
+           sqli.fillCompontTable(CompontTable,"1");
+           sqli.fillCompontTable(DeletedCompontTable,"0");
+        }
+    }//GEN-LAST:event_RestoreDeletedCompontButtonActionPerformed
+
+    private void RestoreDeletedBottelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreDeletedBottelButtonActionPerformed
+        int index=DeletedBottelTable.getSelectedRow();
+        if (index<0) {
+            JOptionPane.showMessageDialog(null, "Veuillez séléctionner une ligne");
+        }else{
+           String id= DeletedBottelTable.getValueAt(index, 0).toString();
+           sqli.restoreFromTable("Bottel","IDB='"+id+"';");
+           sqli.fillBottelTable(BottelTable,"1");
+           sqli.fillBottelTable(DeletedBottelTable,"0");
+        }
+    }//GEN-LAST:event_RestoreDeletedBottelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2057,6 +2457,7 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JTextField BottelSearchBar;
     private javax.swing.JButton BottelSearchButton;
     private javax.swing.JTable BottelTable;
+    private javax.swing.JButton ComponetRestoreButton;
     private javax.swing.JButton CompontAddButton;
     private javax.swing.JButton CompontDeleteButton;
     private javax.swing.JButton CompontModifieButton;
@@ -2064,6 +2465,21 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JButton CompontSearchButton;
     private javax.swing.JTable CompontTable;
     private javax.swing.JPanel Container;
+    private javax.swing.JPanel DeletedBottel;
+    private javax.swing.JDialog DeletedBottelDialog;
+    private javax.swing.JTextField DeletedBottelSearchBar;
+    private javax.swing.JButton DeletedBottelSearchButton;
+    private javax.swing.JTable DeletedBottelTable;
+    private javax.swing.JPanel DeletedCompont;
+    private javax.swing.JDialog DeletedCompontDialog;
+    private javax.swing.JTextField DeletedCompontSearchBar;
+    private javax.swing.JButton DeletedCompontSearchButton;
+    private javax.swing.JTable DeletedCompontTable;
+    private javax.swing.JPanel DeletedProduct;
+    private javax.swing.JDialog DeletedProductDialog;
+    private javax.swing.JTextField DeletedProductSearchBar;
+    private javax.swing.JButton DeletedProductSearchButton;
+    private javax.swing.JTable DeletedProductTable;
     private javax.swing.JPanel DialogBottelContainer;
     private javax.swing.JPanel DialogCompontContainer;
     private javax.swing.JPanel DialogProductContainer;
@@ -2075,6 +2491,8 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JButton PeoductAddButton;
     private javax.swing.JButton ProductDeleteButton;
     private javax.swing.JButton ProductModifieButton;
+    private javax.swing.JButton ProductRestoreButton;
+    private javax.swing.JButton ProductRestoreButton1;
     private javax.swing.JTextField ProductSearchBar;
     private javax.swing.JButton ProductSearchButton;
     private javax.swing.JTable ProductTable;
@@ -2099,6 +2517,9 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JPanel RechargeProductContainer;
     private javax.swing.JButton RechargeProductRechargeButton;
     private javax.swing.JTextField RechargeProductStock;
+    private javax.swing.JButton RestoreDeletedBottelButton;
+    private javax.swing.JButton RestoreDeletedCompontButton;
+    private javax.swing.JButton RestoreDeletedProductButton;
     private javax.swing.JButton SellButton;
     private javax.swing.JPanel SellContainer;
     private javax.swing.JComboBox<String> SellCreatedBottelCombobox;
@@ -2117,8 +2538,6 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JTextField SellOriginalPrix;
     private javax.swing.JTextField SellOriginalQte;
     private javax.swing.JButton SellOriginalSellButton;
-    private javax.swing.JButton StockButton;
-    private javax.swing.JPanel StockContainer;
     private javax.swing.JPanel addBottelContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2144,6 +2563,9 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2155,5 +2577,8 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     // End of variables declaration//GEN-END:variables
 }
