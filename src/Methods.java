@@ -1,7 +1,9 @@
 
-import javax.swing.JOptionPane;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import  javax.swing.JFrame;
 
 
 public class Methods {
@@ -17,5 +19,16 @@ public class Methods {
         public Double CalculatingProductPrice(){
             double price=0;
             return price;
+        }
+        public void conditionOnTheTextFiled (KeyEvent evt ,JTextField text , JFrame frame){
+            char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+            || (c == KeyEvent.VK_BACK_SPACE)
+            || ((c == KeyEvent.VK_PERIOD) && !text.getText().contains("."))
+            || (c == KeyEvent.VK_DELETE))) {
+        frame.getToolkit().beep();
+        evt.consume();
+        
+        }
         }
 }

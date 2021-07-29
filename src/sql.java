@@ -243,11 +243,11 @@ public class sql {
             }
     }
 //==============================================================================
-  public void fillBottelTable(JTable Botteltable,String active){
+  public void fillBottelTable(JTable table,String active){
       
-        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
       
-        while(Botteltable.getRowCount()>0){
+        while(table.getRowCount()>0){
             tab.removeRow(0);
         }
         
@@ -280,11 +280,48 @@ public class sql {
   }
 //==============================================================================
   //==============================================================================
-  public void fillCompontTable(JTable Botteltable,String active){
+  public void fillBottelTableWithCOndition(JTable table,String active, String condition){
       
-        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
       
-        while(Botteltable.getRowCount()>0){
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from bottel where `active`='"+active+"' and volume ="+condition;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idBottel=rs.getString("IDB"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                Volume=rs.getString("Volume"),
+                Qte=rs.getString("Stock");
+      
+            
+            tab.addRow(new Object[]{idBottel,Volume,PrxAchat,PrxVendu,Qte});    
+       
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+  //==============================================================================
+  public void fillCompontTable(JTable table,String active){
+      
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+      
+        while(table.getRowCount()>0){
             tab.removeRow(0);
         }
         
@@ -318,17 +355,93 @@ public class sql {
       
   }
 //==============================================================================
+    //==============================================================================
+  public void fillCompontTableWithCondition(JTable table,String active,String condition){
+      
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+      
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from sousproduit where `active`='"+active+"' and name="+condition;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idsp=rs.getString("IDSP"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                name=rs.getString("name"),
+                Qte=rs.getString("VolumeStock"),
+                extrait=rs.getString("extrait");
+      
+            if (extrait.equals("1"))
+                tab.addRow(new Object[]{idsp,name,PrxAchat,PrxVendu,Qte,"Extrait"});    
+            else
+                tab.addRow(new Object[]{idsp,name,PrxAchat,PrxVendu,Qte,"Non Extrait"}); 
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
   //==============================================================================
-  public void fillProductTable(JTable Botteltable,String active){
+  public void fillProductTable(JTable table,String active){
       
-        DefaultTableModel tab =(DefaultTableModel) Botteltable.getModel();
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
       
-        while(Botteltable.getRowCount()>0){
+        while(table.getRowCount()>0){
             tab.removeRow(0);
         }
         
         
       String sql ="select * from produit where `active`= '"+active+"'";
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String idp=rs.getString("IDP"),
+                PrxAchat=rs.getString("PrixAcha"),
+                PrxVendu=rs.getString("PrixVendu"),
+                name=rs.getString("name"),
+                Qte=rs.getString("qte");
+      
+            
+            tab.addRow(new Object[]{idp,name,PrxAchat,PrxVendu,Qte});    
+       
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+   //==============================================================================
+  public void fillProductTableWithConditon(JTable table,String active,String condition){
+      
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+      
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from produit where `active`= '"+active+"' and name ='"+condition+"'";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -362,7 +475,7 @@ public class sql {
         box.removeAllItems();
         
         
-      String sql ="select * from "+table;
+      String sql ="select * from "+table+" where active = 1";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -389,7 +502,7 @@ public class sql {
         box.removeAllItems();
         
         
-      String sql ="select * from "+table+" where "+condition;
+      String sql ="select * from "+table+" where "+condition+" and active = 1";
      try {
          
          pst = conn.prepareStatement(sql);
@@ -409,6 +522,7 @@ public class sql {
       
   }
 //==============================================================================
+  
   //==============================================================================
   public void fillList(DefaultListModel model ,String table,String selection){
       
@@ -416,7 +530,7 @@ public class sql {
         model.removeAllElements();
         
         
-      String sql ="select * from "+table;
+      String sql ="select * from "+table+" where active = 1";
      try {
          
          pst = conn.prepareStatement(sql);

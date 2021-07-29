@@ -1,9 +1,9 @@
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -295,6 +295,12 @@ public class app extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(AddConfigTable);
 
+        AddConfigVolume.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddConfigVolumeKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Volume");
 
         AddConfigPutButton.setText("|===>");
@@ -398,6 +404,14 @@ public class app extends javax.swing.JFrame {
                 RechargeBottelQteActionPerformed(evt);
             }
         });
+        RechargeBottelQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RechargeBottelQteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RechargeBottelQteKeyTyped(evt);
+            }
+        });
 
         RechargeBottelRechargeButton.setText("Recharge");
         RechargeBottelRechargeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -460,6 +474,11 @@ public class app extends javax.swing.JFrame {
         RechargeCompontStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RechargeCompontStockActionPerformed(evt);
+            }
+        });
+        RechargeCompontStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RechargeCompontStockKeyTyped(evt);
             }
         });
 
@@ -528,6 +547,11 @@ public class app extends javax.swing.JFrame {
         RechargeProductStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RechargeProductStockActionPerformed(evt);
+            }
+        });
+        RechargeProductStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RechargeProductStockKeyTyped(evt);
             }
         });
 
@@ -602,7 +626,19 @@ public class app extends javax.swing.JFrame {
 
         jLabel22.setText("Product");
 
+        SellOriginalQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SellOriginalQteKeyTyped(evt);
+            }
+        });
+
         jLabel23.setText("Prix");
+
+        SellOriginalPrix.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SellOriginalPrixKeyTyped(evt);
+            }
+        });
 
         SellOriginalSellButton.setText("Sell");
         SellOriginalSellButton.addActionListener(new java.awt.event.ActionListener() {
@@ -685,6 +721,12 @@ public class app extends javax.swing.JFrame {
             }
         });
 
+        SellCreatedQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SellCreatedQteKeyTyped(evt);
+            }
+        });
+
         SellCreatedSellButton.setText("Sell");
         SellCreatedSellButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -693,6 +735,12 @@ public class app extends javax.swing.JFrame {
         });
 
         jLabel27.setText("Prix");
+
+        SellCreatedPrix.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SellCreatedPrixKeyTyped(evt);
+            }
+        });
 
         SellCreatedExtraitCombobox.setModel(ExtraitModel);
         SellCreatedExtraitCombobox.addActionListener(new java.awt.event.ActionListener() {
@@ -761,11 +809,35 @@ public class app extends javax.swing.JFrame {
 
         jLabel3.setText("Volume");
 
+        AddBottelVolume.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddBottelVolumeKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Buying Price");
+
+        AddBottelBuyingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddBottelBuyingPriceKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Selling Price");
 
+        AddBottelSellingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddBottelSellingPriceKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("Quantite");
+
+        AddBottelQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddBottelQteKeyTyped(evt);
+            }
+        });
 
         AddBottelClearButton.setText("Clear");
         AddBottelClearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -962,9 +1034,32 @@ public class app extends javax.swing.JFrame {
 
         jLabel11.setText("Name");
 
+        AddCompontBuyingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCompontBuyingPriceActionPerformed(evt);
+            }
+        });
+        AddCompontBuyingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddCompontBuyingPriceKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Buying Price");
 
         jLabel13.setText("Selling Price");
+
+        AddCompontSellingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddCompontSellingPriceKeyTyped(evt);
+            }
+        });
+
+        AddCompontQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddCompontQteKeyTyped(evt);
+            }
+        });
 
         jLabel14.setText("Quantite");
 
@@ -1064,6 +1159,24 @@ public class app extends javax.swing.JFrame {
         AddProductAddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddProductAddButtonActionPerformed(evt);
+            }
+        });
+
+        AddProductQte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddProductQteKeyTyped(evt);
+            }
+        });
+
+        AddProductSellingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddProductSellingPriceKeyTyped(evt);
+            }
+        });
+
+        AddProductBuyingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddProductBuyingPriceKeyTyped(evt);
             }
         });
 
@@ -1521,11 +1634,12 @@ public class app extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(DeletedCompontLayout.createSequentialGroup()
                             .addGap(2, 2, 2)
                             .addComponent(DeletedCompontSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(DeletedCompontSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeletedCompontSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DeletedCompontLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DeletedCompontLayout.createSequentialGroup()
@@ -1738,6 +1852,7 @@ public class app extends javax.swing.JFrame {
        AddContainer.add(AddConfigContainer,BorderLayout.CENTER);
        AddContainer.repaint();
        AddContainer.revalidate();
+       AddConfigVolume.setText("");
        sqli.fillComboBox(AddConfigSelectedBottel,"bottel","Volume");
        sqli.fillList(AddConfigListModel, "sousproduit","Name");
     }//GEN-LAST:event_AddConfigButtonActionPerformed
@@ -1792,7 +1907,7 @@ public class app extends javax.swing.JFrame {
        RechargeContainer.add(RechargeBottelContainer,BorderLayout.CENTER);
        BottelModel.removeAllElements();
        sqli.fillComboBox(RecahrgeBottelCombobox,"bottel","volume");
-        
+       RechargeBottelQte.setText("");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
     }//GEN-LAST:event_RechargeBottelButtonActionPerformed
@@ -1805,6 +1920,7 @@ public class app extends javax.swing.JFrame {
         sqli.fillComboBox(RechargeProductCombobox,"produit","name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
+       RechargeProductStock.setText("");
     }//GEN-LAST:event_RechargeProductButtonActionPerformed
 
     private void RechargeCompontButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechargeCompontButtonActionPerformed
@@ -1815,10 +1931,11 @@ public class app extends javax.swing.JFrame {
        sqli.fillComboBox(RechargeCompontCombobox,"sousproduit","Name");
        RechargeContainer.repaint();
        RechargeContainer.revalidate();
+       RechargeCompontStock.setText("");
     }//GEN-LAST:event_RechargeCompontButtonActionPerformed
 
     private void SellOriginalComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalComboboxActionPerformed
-        
+
     }//GEN-LAST:event_SellOriginalComboboxActionPerformed
 
     private void SellOriginalClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellOriginalClearButtonActionPerformed
@@ -1852,6 +1969,8 @@ public class app extends javax.swing.JFrame {
         sqli.fillComboBox(SellOriginalCombobox,"produit","name");
        SellContainer.repaint();
        SellContainer.revalidate();
+       SellOriginalQte.setText("");
+       SellOriginalPrix.setText("");
     }//GEN-LAST:event_SellOriginalButtonActionPerformed
 
     private void SellCreatedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellCreatedButtonActionPerformed
@@ -1862,6 +1981,8 @@ public class app extends javax.swing.JFrame {
        SellContainer.revalidate();
        sqli.fillComboBoxWithConditon(SellCreatedExtraitCombobox,"sousproduit","name", "extrait=1 ");
         sqli.fillComboBox(SellCreatedBottelCombobox,"bottel","Volume"); 
+        SellCreatedQte.setText("");
+        SellCreatedPrix.setText("");
     }//GEN-LAST:event_SellCreatedButtonActionPerformed
 
     private void AddConfigPutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConfigPutButtonActionPerformed
@@ -2150,15 +2271,39 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_RechargeCompontRechargeButtonActionPerformed
 
     private void BottelSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelSearchButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            String searchedName= BottelSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillBottelTable(BottelTable, "1");
+            else
+            sqli.fillBottelTableWithCOndition(BottelTable, "1", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_BottelSearchButtonActionPerformed
 
     private void ProductSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductSearchButtonActionPerformed
-        // TODO add your handling code here:
+         try {
+            String searchedName= ProductSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillProductTable(ProductTable, "1");
+            else
+            sqli.fillProductTableWithConditon(ProductTable, "1", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_ProductSearchButtonActionPerformed
 
     private void CompontSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompontSearchButtonActionPerformed
-        // TODO add your handling code here:
+         try {
+            String searchedName= CompontSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillCompontTable(CompontTable, "1");
+            else
+            sqli.fillCompontTableWithCondition(CompontTable, "1", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_CompontSearchButtonActionPerformed
 
     private void BottelAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottelAddButtonActionPerformed
@@ -2308,15 +2453,39 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductRestoreButtonActionPerformed
 
     private void DeletedProductSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedProductSearchButtonActionPerformed
-        // TODO add your handling code here:
+       try {
+            String searchedName= DeletedProductSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillProductTable(DeletedProductTable, "0");
+            else
+            sqli.fillProductTableWithConditon(DeletedProductTable, "0", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_DeletedProductSearchButtonActionPerformed
 
     private void DeletedCompontSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedCompontSearchButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            String searchedName= DeletedCompontSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillCompontTable(DeletedCompontTable, "0");
+            else
+            sqli.fillCompontTableWithCondition(DeletedCompontTable, "0", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_DeletedCompontSearchButtonActionPerformed
 
     private void DeletedBottelSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletedBottelSearchButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            String searchedName= DeletedBottelSearchBar.getText();
+            if (searchedName.equals(""))
+            sqli.fillBottelTable(DeletedBottelTable, "0");
+            else
+            sqli.fillBottelTableWithCOndition(DeletedBottelTable, "0", searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
     }//GEN-LAST:event_DeletedBottelSearchButtonActionPerformed
 
     private void ComponetRestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComponetRestoreButtonActionPerformed
@@ -2366,6 +2535,88 @@ public class app extends javax.swing.JFrame {
            sqli.fillBottelTable(DeletedBottelTable,"0");
         }
     }//GEN-LAST:event_RestoreDeletedBottelButtonActionPerformed
+
+    private void RechargeBottelQteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RechargeBottelQteKeyPressed
+           
+       
+    }//GEN-LAST:event_RechargeBottelQteKeyPressed
+
+    private void RechargeBottelQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RechargeBottelQteKeyTyped
+        methode.conditionOnTheTextFiled(evt,RechargeBottelQte,this);
+    }//GEN-LAST:event_RechargeBottelQteKeyTyped
+
+    private void RechargeProductStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RechargeProductStockKeyTyped
+        methode.conditionOnTheTextFiled(evt, RechargeProductStock,this);
+    }//GEN-LAST:event_RechargeProductStockKeyTyped
+
+    private void RechargeCompontStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RechargeCompontStockKeyTyped
+        methode.conditionOnTheTextFiled(evt, RechargeCompontStock,this);
+    }//GEN-LAST:event_RechargeCompontStockKeyTyped
+
+    private void SellOriginalQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellOriginalQteKeyTyped
+       methode.conditionOnTheTextFiled(evt, SellOriginalQte,this);
+    }//GEN-LAST:event_SellOriginalQteKeyTyped
+
+    private void SellOriginalPrixKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellOriginalPrixKeyTyped
+        methode.conditionOnTheTextFiled(evt, SellOriginalPrix,this);
+    }//GEN-LAST:event_SellOriginalPrixKeyTyped
+
+    private void SellCreatedQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellCreatedQteKeyTyped
+        methode.conditionOnTheTextFiled(evt, SellCreatedQte,this);
+    }//GEN-LAST:event_SellCreatedQteKeyTyped
+
+    private void SellCreatedPrixKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellCreatedPrixKeyTyped
+        methode.conditionOnTheTextFiled(evt, SellCreatedPrix,this);
+    }//GEN-LAST:event_SellCreatedPrixKeyTyped
+
+    private void AddCompontBuyingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCompontBuyingPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddCompontBuyingPriceActionPerformed
+
+    private void AddCompontBuyingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddCompontBuyingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddCompontBuyingPrice,this);
+    }//GEN-LAST:event_AddCompontBuyingPriceKeyTyped
+
+    private void AddCompontSellingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddCompontSellingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddCompontSellingPrice,this);
+    }//GEN-LAST:event_AddCompontSellingPriceKeyTyped
+
+    private void AddCompontQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddCompontQteKeyTyped
+         methode.conditionOnTheTextFiled(evt, AddCompontQte,this);
+
+    }//GEN-LAST:event_AddCompontQteKeyTyped
+
+    private void AddBottelVolumeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddBottelVolumeKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddBottelVolume,this);
+    }//GEN-LAST:event_AddBottelVolumeKeyTyped
+
+    private void AddBottelBuyingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddBottelBuyingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddBottelBuyingPrice,this);
+    }//GEN-LAST:event_AddBottelBuyingPriceKeyTyped
+
+    private void AddBottelSellingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddBottelSellingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddBottelSellingPrice,this);
+    }//GEN-LAST:event_AddBottelSellingPriceKeyTyped
+
+    private void AddBottelQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddBottelQteKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddBottelQte,this);
+    }//GEN-LAST:event_AddBottelQteKeyTyped
+
+    private void AddProductBuyingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddProductBuyingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddProductBuyingPrice,this);
+    }//GEN-LAST:event_AddProductBuyingPriceKeyTyped
+
+    private void AddProductSellingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddProductSellingPriceKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddProductSellingPrice,this);
+    }//GEN-LAST:event_AddProductSellingPriceKeyTyped
+
+    private void AddProductQteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddProductQteKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddProductQte,this);
+    }//GEN-LAST:event_AddProductQteKeyTyped
+
+    private void AddConfigVolumeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddConfigVolumeKeyTyped
+        methode.conditionOnTheTextFiled(evt, AddConfigVolume,this);
+    }//GEN-LAST:event_AddConfigVolumeKeyTyped
 
     /**
      * @param args the command line arguments

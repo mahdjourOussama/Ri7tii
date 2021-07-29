@@ -276,6 +276,9 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="AddConfigVolume">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddConfigVolumeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -401,6 +404,8 @@
         <Component class="javax.swing.JTextField" name="RechargeBottelQte">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RechargeBottelQteActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="RechargeBottelQteKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="RechargeBottelQteKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="RechargeBottelRechargeButton">
@@ -491,6 +496,7 @@
         <Component class="javax.swing.JTextField" name="RechargeCompontStock">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RechargeCompontStockActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="RechargeCompontStockKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
@@ -591,6 +597,7 @@
         <Component class="javax.swing.JTextField" name="RechargeProductStock">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RechargeProductStockActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="RechargeProductStockKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
@@ -707,6 +714,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="SellOriginalQte">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SellOriginalQteKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
@@ -714,6 +724,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="SellOriginalPrix">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SellOriginalPrixKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="SellOriginalSellButton">
           <Properties>
@@ -842,6 +855,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="SellCreatedQte">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SellCreatedQteKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="SellCreatedSellButton">
           <Properties>
@@ -857,6 +873,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="SellCreatedPrix">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SellCreatedPrixKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="SellCreatedExtraitCombobox">
           <Properties>
@@ -985,6 +1004,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="AddBottelVolume">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddBottelVolumeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -992,6 +1014,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="AddBottelBuyingPrice">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddBottelBuyingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -999,6 +1024,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="AddBottelSellingPrice">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddBottelSellingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -1006,6 +1034,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="AddBottelQte">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddBottelQteKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="AddBottelClearButton">
               <Properties>
@@ -1280,6 +1311,10 @@
             <Component class="javax.swing.JTextField" name="AddCompontName">
             </Component>
             <Component class="javax.swing.JTextField" name="AddCompontBuyingPrice">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddCompontBuyingPriceActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddCompontBuyingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -1292,8 +1327,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="AddCompontSellingPrice">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddCompontSellingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="AddCompontQte">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddCompontQteKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
@@ -1434,10 +1475,19 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="AddProductQte">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddProductQteKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="AddProductSellingPrice">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddProductSellingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="AddProductBuyingPrice">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AddProductBuyingPriceKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="AddProductName">
             </Component>
@@ -1966,12 +2016,14 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel32" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Group type="102" alignment="3" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   <Component id="DeletedCompontSearchBar" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="DeletedCompontSearchButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="DeletedCompontSearchButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
