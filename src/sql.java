@@ -739,4 +739,27 @@ public class sql {
     }
     
 //==============================================================================
+//==============================================================================
+    public boolean checkPassword(String password, String username){
+        ResultSet res= null;
+            String sql = "select * from  accounts ";
+               boolean result= false;
+            try {
+                pst=conn.prepareStatement(sql);
+                res=pst.executeQuery(sql);
+                while(res.next()){
+                    if (password.equals(res.getString("password"))&&username.equals(res.getString("username")))
+                        result=true;
+                    else result=false;
+                }
+                    
+               return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "checkPassword\n" + e.getMessage());
+                return false;
+            }
+    }
+//==============================================================================
 }
