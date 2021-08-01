@@ -96,6 +96,26 @@ public class sql {
     }
 //==============================================================================
   //==============================================================================
+ public void insertToAccount(String Param1,String Param2,String Param3) {
+            
+            String sql = "insert into Accounts (`username`,`password`,`admin`) VALUES (?,?,?)";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, Param1);
+                pst.setString(2, Param2);
+                pst.setString(3, Param3);
+
+
+                
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Added TO Accounts\t");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "insertToAccounts\n" + e.getMessage());
+            }
+    }
+//==============================================================================
+  //==============================================================================
  public void UpdateBottel(String volume,String stock,String prixA,String PrixV,String IDB) {
             
             String sql = "UPDATE `bottel` SET `Volume`=?,`Stock`=?,`PrixAcha`=?,`PrixVendu`=? WHERE IDB=?";
@@ -304,6 +324,78 @@ public class sql {
       
             
             tab.addRow(new Object[]{idBottel,Volume,PrxAchat,PrxVendu,Qte});    
+       
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+//==============================================================================
+  public void fillAccountTable(JTable table){
+      
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+      
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="select * from Accounts" ;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String ID=rs.getString("IDacc"),
+                Username=rs.getString("Username"),
+                Password=rs.getString("admin"); 
+      
+            
+            if(Password.equals("1"))
+                    tab.addRow(new Object[]{ID,Username,"Admin"});
+                else tab.addRow(new Object[]{ID,Username,"Not ADmin"});   
+       
+         
+      }
+      
+      
+      } catch (Exception e) {
+          e.printStackTrace();
+         
+      }
+      
+  }
+//==============================================================================
+//==============================================================================
+  public void fillAccountTableWithCOndition(JTable table, String condition){
+      
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+      
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+        
+        
+      String sql ="SELECT * FROM `accounts` WHERE `username`='"+condition+"'" ;
+     try {
+         
+         pst = conn.prepareStatement(sql);
+      rs=pst.executeQuery(sql); 
+      
+      while(rs.next()){
+         String ID=rs.getString("IDacc"),
+                Username=rs.getString("Username"),
+                Password=rs.getString("admin");
+                if(Password.equals("1"))
+                    tab.addRow(new Object[]{ID,Username,"Admin"});
+                else tab.addRow(new Object[]{ID,Username,"Not ADmin"});
        
          
       }
@@ -739,6 +831,43 @@ public class sql {
     }
     
 //==============================================================================
+        public void updateAdmin(String stats,String Condition){
+            String sqql="update accounts set   admin ="+stats+" where "+Condition;
+        
+        try {
+            
+       pst=conn.prepareStatement(sqql);
+       pst.execute();
+        
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "updateAdmin \n "+e.getMessage());
+        }
+        
+        
+    }
+    
+//==============================================================================
+        //==============================================================================
+        public void DeleteAccount(String Condition){
+            String sqql="DELETE FROM `accounts` WHERE IDacc= ' "+Condition+"';";
+        
+        try {
+            
+       pst=conn.prepareStatement(sqql);
+       pst.execute();
+        
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "updateAdmin \n "+e.getMessage());
+        }
+        
+        
+    }
+    
+//==============================================================================
 //==============================================================================
     public boolean checkPassword(String password, String username){
         ResultSet res= null;
@@ -748,9 +877,32 @@ public class sql {
                 pst=conn.prepareStatement(sql);
                 res=pst.executeQuery(sql);
                 while(res.next()){
+                    
+                    if ((password.equals(res.getString("password"))) &&(username.equals(res.getString("username"))))
+                        result=true;
+                }
+                    
+               return result;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "checkPassword\n" + e.getMessage());
+                return false;
+            }
+    }
+//==============================================================================
+//==============================================================================
+    public boolean checkAdmin(String password, String username){
+        ResultSet res= null;
+            String sql = "select * from  accounts Where admin=1";
+               boolean result= false;
+            try {
+                pst=conn.prepareStatement(sql);
+                res=pst.executeQuery(sql);
+                while(res.next()){
                     if (password.equals(res.getString("password"))&&username.equals(res.getString("username")))
                         result=true;
-                    else result=false;
+                    
                 }
                     
                return result;

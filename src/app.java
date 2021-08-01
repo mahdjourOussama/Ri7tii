@@ -188,24 +188,37 @@ public class app extends javax.swing.JFrame {
         SellButton = new javax.swing.JButton();
         RechargeButton = new javax.swing.JButton();
         SignIn_Dialog = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        SignInPanel = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        SignINUsername = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SignINAdd = new javax.swing.JButton();
+        SignINClear = new javax.swing.JButton();
+        SignINPassword = new javax.swing.JPasswordField();
+        SignINAdminPassword = new javax.swing.JPasswordField();
+        SignINAdminUsername = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        ADMINCheckbox = new javax.swing.JCheckBox();
+        accountsContainer = new javax.swing.JPanel();
+        AccountSetAdminButton = new javax.swing.JButton();
+        AccountDeleteButton = new javax.swing.JButton();
+        AccountSearchbar = new javax.swing.JTextField();
+        AccountSearchButton = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        AccountTable = new javax.swing.JTable();
+        jLabel40 = new javax.swing.JLabel();
+        AccountsRemoveAdminButton = new javax.swing.JButton();
+        AccountsButton = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         logInContainer = new javax.swing.JPanel();
         UsernameTXT = new javax.swing.JTextField();
-        PasswordTxT = new javax.swing.JTextField();
         SignIN = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         homeBackgroundImage = new javax.swing.JLabel();
         LogIN = new javax.swing.JButton();
+        PasswordTxT = new javax.swing.JPasswordField();
 
         AddContainer.setLayout(new java.awt.BorderLayout(20, 20));
 
@@ -1783,7 +1796,7 @@ public class app extends javax.swing.JFrame {
 
         HomeMenu.setMinimumSize(new java.awt.Dimension(130, 400));
         HomeMenu.setPreferredSize(new java.awt.Dimension(100, 400));
-        HomeMenu.setLayout(new java.awt.GridLayout(3, 0, 244, 100));
+        HomeMenu.setLayout(new java.awt.GridLayout(4, 0, 244, 100));
 
         AddButton.setText("ADD New Items");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1810,87 +1823,204 @@ public class app extends javax.swing.JFrame {
         HomeMenu.add(RechargeButton);
 
         SignIn_Dialog.setMinimumSize(new java.awt.Dimension(500, 250));
-        SignIn_Dialog.setPreferredSize(new java.awt.Dimension(500, 250));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
+        SignInPanel.setPreferredSize(new java.awt.Dimension(500, 200));
 
-        jTextField1.setText("jTextField1");
+        jLabel36.setText("ADMIN password");
 
-        jLabel36.setText("jLabel36");
+        jLabel37.setText("Username");
 
-        jLabel37.setText("jLabel36");
+        jLabel38.setText("Password");
 
-        jTextField2.setText("jTextField1");
+        SignINAdd.setText("ADD");
+        SignINAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignINAddActionPerformed(evt);
+            }
+        });
 
-        jLabel38.setText("jLabel36");
+        SignINClear.setText("Clear");
+        SignINClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignINClearActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField1");
+        jLabel39.setText("ADMIN Username");
 
-        jButton1.setText("jButton1");
+        ADMINCheckbox.setText("ADMIN");
 
-        jButton2.setText("jButton1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout SignInPanelLayout = new javax.swing.GroupLayout(SignInPanel);
+        SignInPanel.setLayout(SignInPanelLayout);
+        SignInPanelLayout.setHorizontalGroup(
+            SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SignInPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SignInPanelLayout.createSequentialGroup()
+                        .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SignINPassword)
+                            .addGroup(SignInPanelLayout.createSequentialGroup()
+                                .addComponent(ADMINCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SignINUsername))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignInPanelLayout.createSequentialGroup()
+                        .addComponent(SignINClear, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                        .addComponent(SignINAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignInPanelLayout.createSequentialGroup()
+                        .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SignINAdminPassword)
+                            .addComponent(SignINAdminUsername))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        SignInPanelLayout.setVerticalGroup(
+            SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SignInPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignINAdminUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SignINAdminPassword))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SignINUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ADMINCheckbox))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SignINPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SignInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SignINAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignINClear, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout SignIn_DialogLayout = new javax.swing.GroupLayout(SignIn_Dialog.getContentPane());
         SignIn_Dialog.getContentPane().setLayout(SignIn_DialogLayout);
         SignIn_DialogLayout.setHorizontalGroup(
             SignIn_DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(SignInPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         SignIn_DialogLayout.setVerticalGroup(
             SignIn_DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(SignInPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
+
+        AccountSetAdminButton.setText("set Admin");
+        AccountSetAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountSetAdminButtonActionPerformed(evt);
+            }
+        });
+
+        AccountDeleteButton.setText("Delete");
+        AccountDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        AccountSearchButton.setText("Search");
+        AccountSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        AccountTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        AccountTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "AccID", "Username", "AdminStats"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(AccountTable);
+
+        jLabel40.setText("Account");
+
+        AccountsRemoveAdminButton.setText("Remove admin");
+        AccountsRemoveAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountsRemoveAdminButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout accountsContainerLayout = new javax.swing.GroupLayout(accountsContainer);
+        accountsContainer.setLayout(accountsContainerLayout);
+        accountsContainerLayout.setHorizontalGroup(
+            accountsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountsContainerLayout.createSequentialGroup()
+                .addGroup(accountsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AccountSetAdminButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AccountDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AccountsRemoveAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(accountsContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AccountSearchbar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AccountSearchButton)
+                .addGap(12, 12, 12))
+        );
+        accountsContainerLayout.setVerticalGroup(
+            accountsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountsContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accountsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AccountSearchbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AccountSearchButton)
+                    .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(accountsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(accountsContainerLayout.createSequentialGroup()
+                        .addComponent(AccountSetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AccountsRemoveAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addComponent(AccountDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        AccountsButton.setText("Accounts");
+        AccountsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountsButtonActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ri7ti APP");
-        setPreferredSize(new java.awt.Dimension(1000, 500));
 
         Container.setLayout(new java.awt.BorderLayout(20, 20));
 
@@ -1933,7 +2063,7 @@ public class app extends javax.swing.JFrame {
                             .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(logInContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UsernameTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                            .addComponent(UsernameTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                             .addComponent(PasswordTxT))
                         .addContainerGap())))
         );
@@ -1946,12 +2076,12 @@ public class app extends javax.swing.JFrame {
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(logInContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PasswordTxT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordTxT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(logInContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(logInContainerLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(homeBackgroundImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(homeBackgroundImage, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logInContainerLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(logInContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2790,13 +2920,20 @@ public class app extends javax.swing.JFrame {
                 password=PasswordTxT.getText();
         boolean test=sqli.checkPassword(password, username);
         if (test){
+            if(sqli.checkAdmin(password, username)){
+                HomeMenu.add(AccountsButton);
+            }
             Container.remove(logInContainer);
            Container.add(HomeMenu,BorderLayout.WEST);
            Container.revalidate();
            Container.repaint();
+           setSize(800,500);
+           
         }else{
             JOptionPane.showMessageDialog(null, "wrong password or username");
-        }
+        } 
+        UsernameTXT.setText("");
+           PasswordTxT.setText("");
     }//GEN-LAST:event_LogINActionPerformed
 
     private void SignINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignINActionPerformed
@@ -2804,6 +2941,91 @@ public class app extends javax.swing.JFrame {
         SignIn_Dialog.setTitle("Sign IN");
         SignIn_Dialog.setVisible(true);
     }//GEN-LAST:event_SignINActionPerformed
+
+    private void SignINClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignINClearActionPerformed
+       SignINPassword.setText("");
+       SignINUsername.setText("");
+       SignINAdminPassword.setText("");
+       ADMINCheckbox.setSelected(false);
+       SignINAdminUsername.setText("");
+    }//GEN-LAST:event_SignINClearActionPerformed
+
+    private void SignINAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignINAddActionPerformed
+        String Username=SignINUsername.getText(),
+               Password=SignINPassword.getText(),
+               AdminUsername=SignINAdminUsername.getText(),
+               AdminPassword=SignINAdminPassword.getText();
+        boolean Userstat=ADMINCheckbox.isSelected();
+        if(sqli.checkAdmin(AdminPassword, AdminUsername)){
+            if(Userstat)
+                sqli.insertToAccount(Password, Username, "1");
+            else sqli.insertToAccount(Password, Username, "0");
+           
+        }else JOptionPane.showMessageDialog(null, "invalide addmin");
+        SignINPassword.setText("");
+       SignINUsername.setText("");
+       SignINAdminPassword.setText("");
+       ADMINCheckbox.setSelected(false);
+       SignINAdminUsername.setText("");
+    }//GEN-LAST:event_SignINAddActionPerformed
+
+    private void AccountSetAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountSetAdminButtonActionPerformed
+        try {
+            int selectedRow=AccountTable.getSelectedRow();
+        String selectedID=AccountTable.getValueAt(selectedRow, 0).toString();
+        sqli.updateAdmin("1", "IDacc = "+selectedID);
+        sqli.fillAccountTable(AccountTable);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please select Item");
+        }
+    }//GEN-LAST:event_AccountSetAdminButtonActionPerformed
+
+    private void AccountDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountDeleteButtonActionPerformed
+        try {
+            int selectedRow=AccountTable.getSelectedRow();
+        String selectedID=AccountTable.getValueAt(selectedRow, 0).toString(),
+                selectedStats=AccountTable.getValueAt(selectedRow, 2).toString();
+        if(selectedStats.equalsIgnoreCase("admin"))
+            JOptionPane.showMessageDialog(null, "cant delete an admin");
+        else
+            sqli.DeleteAccount("IDacc = "+selectedID);
+        sqli.fillAccountTable(AccountTable);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please select Item");
+        }
+    }//GEN-LAST:event_AccountDeleteButtonActionPerformed
+
+    private void AccountSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountSearchButtonActionPerformed
+        try {
+            String searchedName= AccountSearchbar.getText();
+            if (searchedName.equals(""))
+            sqli.fillAccountTable(AccountTable);
+            else
+            sqli.fillAccountTableWithCOndition(AccountTable, searchedName);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "enter what u wanna search");
+        }
+    }//GEN-LAST:event_AccountSearchButtonActionPerformed
+
+    private void AccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountsButtonActionPerformed
+        Container.removeAll();
+       Container.add(HomeMenu,BorderLayout.WEST);
+       Container.add(accountsContainer,BorderLayout.CENTER);
+       sqli.fillAccountTable(AccountTable);
+       Container.repaint();
+       Container.revalidate();
+    }//GEN-LAST:event_AccountsButtonActionPerformed
+
+    private void AccountsRemoveAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountsRemoveAdminButtonActionPerformed
+        try {
+            int selectedRow=AccountTable.getSelectedRow();
+        String selectedID=AccountTable.getValueAt(selectedRow, 0).toString();
+        sqli.updateAdmin("0", "IDacc = "+selectedID);
+        sqli.fillAccountTable(AccountTable);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please select Item");
+        }
+    }//GEN-LAST:event_AccountsRemoveAdminButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2852,6 +3074,14 @@ public class app extends javax.swing.JFrame {
     private Methods methode= new Methods();
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox ADMINCheckbox;
+    private javax.swing.JButton AccountDeleteButton;
+    private javax.swing.JButton AccountSearchButton;
+    private javax.swing.JTextField AccountSearchbar;
+    private javax.swing.JButton AccountSetAdminButton;
+    private javax.swing.JTable AccountTable;
+    private javax.swing.JButton AccountsButton;
+    private javax.swing.JButton AccountsRemoveAdminButton;
     private javax.swing.JButton AddBottelAddButton;
     private javax.swing.JButton AddBottelButton;
     private javax.swing.JTextField AddBottelBuyingPrice;
@@ -2927,7 +3157,7 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JCheckBox ExtraitCheckbox;
     private javax.swing.JPanel HomeMenu;
     private javax.swing.JButton LogIN;
-    private javax.swing.JTextField PasswordTxT;
+    private javax.swing.JPasswordField PasswordTxT;
     private javax.swing.JButton PeoductAddButton;
     private javax.swing.JButton ProductDeleteButton;
     private javax.swing.JButton ProductModifieButton;
@@ -2979,12 +3209,18 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JTextField SellOriginalQte;
     private javax.swing.JButton SellOriginalSellButton;
     private javax.swing.JButton SignIN;
+    private javax.swing.JButton SignINAdd;
+    private javax.swing.JPasswordField SignINAdminPassword;
+    private javax.swing.JTextField SignINAdminUsername;
+    private javax.swing.JButton SignINClear;
+    private javax.swing.JPasswordField SignINPassword;
+    private javax.swing.JTextField SignINUsername;
+    private javax.swing.JPanel SignInPanel;
     private javax.swing.JDialog SignIn_Dialog;
     private javax.swing.JTextField UsernameTXT;
+    private javax.swing.JPanel accountsContainer;
     private javax.swing.JPanel addBottelContainer;
     private javax.swing.JLabel homeBackgroundImage;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3017,13 +3253,14 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3032,9 +3269,7 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPanel logInContainer;
     // End of variables declaration//GEN-END:variables
 }
